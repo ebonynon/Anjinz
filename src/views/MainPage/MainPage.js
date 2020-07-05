@@ -7,14 +7,15 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import Header from "components/Header/Header.js";
-import Footer from "components/Footer/Footer.js";
+import Header from "components/Header/Header.js"; // ⛳
+import Footer from "components/Footer/Footer.js"; // ⛳
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
+import HeaderLinks from "components/Header/HeaderLinks.js"; // ⛳
+import Parallax from "components/Parallax/Parallax.js"; 
 
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
+import styles from "../../assets/css/_views/mainPage.js"
 
 // Sections for this page
 import SectionAboutUs from "./Sections/AboutUsSection.js";
@@ -59,7 +60,7 @@ export default function MainPage(props) {
       <div
         className={classNames(
           classes.main
-          //classes.mainRaised -- for boder 
+          //classes.mainRaised -- for boder
         )}
       >
         <div className={classes.container}>
