@@ -12,10 +12,10 @@ import Footer from "components/Footer/Footer.js"; // ⛳
 //import GridContainer from "components/Grid/GridContainer.js";
 //import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js"; // ⛳
-//import Parallax from "components/Parallax/Parallax.js"; 
+//import Parallax from "components/Parallax/Parallax.js";
 
 //import styles from "assets/jss/material-kit-react/views/landingPage.js";
-import styles from "../../assets/css/_views/mainPage.js"
+import styles from "../../assets/css/_views/mainPage.js";
 
 // Sections for this page
 import SectionAboutUs from "./Sections/AboutUsSection.js";

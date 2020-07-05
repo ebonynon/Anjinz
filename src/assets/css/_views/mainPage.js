@@ -1,5 +1,13 @@
 //import { container, title } from "assets/jss/material-kit-react.js";
 
+const containerFluid = {
+  paddingRight: "15px",
+  paddingLeft: "15px",
+  marginRight: "auto",
+  marginLeft: "auto",
+  width: "100%",
+};
+
 const container = {
   ...containerFluid,
   "@media (min-width: 576px)": {
