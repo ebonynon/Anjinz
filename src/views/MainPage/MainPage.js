@@ -9,12 +9,12 @@ import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Header from "components/Header/Header.js"; // ⛳
 import Footer from "components/Footer/Footer.js"; // ⛳
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+//import GridContainer from "components/Grid/GridContainer.js";
+//import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js"; // ⛳
-import Parallax from "components/Parallax/Parallax.js"; 
+//import Parallax from "components/Parallax/Parallax.js"; 
 
-import styles from "assets/jss/material-kit-react/views/landingPage.js";
+//import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import styles from "../../assets/css/_views/mainPage.js"
 
 // Sections for this page
@@ -41,7 +41,7 @@ export default function MainPage(props) {
         }}
         {...rest}
       />
-      <Parallax filter image={require("assets/img/og-js-01.png")}>
+      {/* <Parallax filter image={require("assets/img/og-js-01.png")}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
@@ -56,7 +56,7 @@ export default function MainPage(props) {
             </GridItem>
           </GridContainer>
         </div>
-      </Parallax>
+      </Parallax> */}
       <div
         className={classNames(
           classes.main
