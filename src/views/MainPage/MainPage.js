@@ -16,6 +16,7 @@ import styles from "../../assets/css/_views/mainPage.js";
 // Sections for this page
 //import SectionAboutUs from "./Sections/AboutUsSection.js";
 import SearchSection from "./Sections/SearchSection.js";
+import CardSection from "./Sections/CardSection.js"
 
 const useStyles = makeStyles(styles);
 
@@ -40,6 +41,9 @@ export default function MainPage(props) {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <SearchSection />
+          <br></br> {/*  tmp tag for spacing */}
+          <CardSection />
+          <br></br> {/* tmp tag for spacing */}
         </div>
       </div>
       <Footer />

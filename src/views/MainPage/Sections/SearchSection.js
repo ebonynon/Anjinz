@@ -3,10 +3,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import SearchIcon from "@material-ui/icons/Search";
 import Grid from "@material-ui/core/Grid";
 // @material-ui/icons
-
+import SearchIcon from "@material-ui/icons/Search";
 // core components
 
 //import styles from "../../../assets/jss/material-kit-react/views/componentsSections/completedStyle.js";
@@ -74,7 +73,7 @@ export default function SearchSection() {
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
-            label="Barand"
+            label="Brand"
             variant="outlined"
           />
           <TextField
