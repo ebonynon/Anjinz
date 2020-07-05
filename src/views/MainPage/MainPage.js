@@ -7,18 +7,19 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import Header from "components/Header/Header.js"; // ⛳
-import Footer from "components/Footer/Footer.js"; // ⛳
+//import Header from "../../components/Header/Header.js"; // ⛳
+import Footer from "../../components/Footer/Footer.js"; // ⛳
 //import GridContainer from "components/Grid/GridContainer.js";
 //import GridItem from "components/Grid/GridItem.js";
-import HeaderLinks from "components/Header/HeaderLinks.js"; // ⛳
+//import HeaderLinks from "../../components/Header/HeaderLinks.js"; // ⛳
 //import Parallax from "components/Parallax/Parallax.js";
 
 //import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import styles from "../../assets/css/_views/mainPage.js";
+import { Typography } from "@material-ui/core";
 
 // Sections for this page
-import SectionAboutUs from "./Sections/AboutUsSection.js";
+//import SectionAboutUs from "./Sections/AboutUsSection.js";
 
 const dashboardRoutes = [];
 
@@ -29,7 +30,7 @@ export default function MainPage(props) {
   const { ...rest } = props;
   return (
     <div>
-      <Header
+      {/* <Header
         color="transparent"
         routes={dashboardRoutes}
         brand="KallathoniXY"
@@ -40,7 +41,8 @@ export default function MainPage(props) {
           color: "white",
         }}
         {...rest}
-      />
+      /> */}
+      <Typography>Hello World....!!!!</Typography>
       {/* <Parallax filter image={require("assets/img/og-js-01.png")}>
         <div className={classes.container}>
           <GridContainer>
@@ -64,7 +66,8 @@ export default function MainPage(props) {
         )}
       >
         <div className={classes.container}>
-          <SectionAboutUs />
+          {/* <SectionAboutUs /> */}
+          <Typography>Hello Fukers....!!!!</Typography>
         </div>
       </div>
       <Footer />
