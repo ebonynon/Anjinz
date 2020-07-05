@@ -9,8 +9,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-//import headerStyle from "../../assets/css/_components/headerStyle.js";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

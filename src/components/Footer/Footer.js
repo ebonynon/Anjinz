@@ -5,7 +5,6 @@ import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
 import Favorite from "@material-ui/icons/Favorite";
 import Typography from "../Typography/Typography.js";
-//import Typography from "@material-ui/core/TableBody";
 
 const useStyles = makeStyles((theme) => ({
   root: {
