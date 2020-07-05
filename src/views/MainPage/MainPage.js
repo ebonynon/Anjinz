@@ -31,8 +31,7 @@ export default function MainPage(props) {
             <Grid item xs={12} sm={12} md={6}>
               <Typography variant="h4">
                 There is sometimes an incorrect assumption that the parser
-                itself is what does everything necessary to facilitate the use
-                of ESLint with TypeScript.
+                itself is what of ESLint with TypeScript.
               </Typography>
             </Grid>
           </Grid>
