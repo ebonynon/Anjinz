@@ -1,6 +1,6 @@
 const containerFluid = {
   paddingRight: "15px",
-  paddingLeft: "15px",
+  //paddingLeft: "15px",
   marginRight: "auto",
   marginLeft: "auto",
   width: "100%",
@@ -30,7 +30,7 @@ const title = {
   fontFamily: `"Roboto Slab", "Times New Roman", serif`,
 };
 
-const landingPageStyle = {
+const mainPageStyles = {
   container: {
     zIndex: "12",
     color: "#FFFFFF",
@@ -69,4 +69,4 @@ const landingPageStyle = {
   },
 };
 
-export default landingPageStyle;
+export default mainPageStyles;

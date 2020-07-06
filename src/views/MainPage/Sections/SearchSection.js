@@ -35,6 +35,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     float: "right!important",
+    [theme.breakpoints.down("md")]: {
+      paddingRight: "16px",
+      marginRight: "85px",
+    },
+  },
+  gridItem: {
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "20px",
+    },
   },
 }));
 
@@ -52,12 +61,12 @@ export default function SearchSection() {
         justify="flex-start"
         alignItems="center"
       >
-        <Grid item xs={12} lg={12}>
+        <Grid item className={classes.gridItem} xs={12} lg={12}>
           <TextField
             className={classes.textField}
             id="outlined-basic"
             label="Part number"
-            variant="outlined"
+            variant="filled"
             //fullWidth
           />
           <Button
@@ -69,24 +78,24 @@ export default function SearchSection() {
             Search
           </Button>
         </Grid>
-        <Grid item>
+        <Grid item className={classes.gridItem}>
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
             label="Brand"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
             label="Modle"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
             label="Part name"
-            variant="outlined"
+            variant="filled"
           />
           <Button
             variant="contained"
