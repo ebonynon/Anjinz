@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       marginLeft: "20px",
     },
+    [theme.breakpoints.down("sm")]: {
+        marginLeft: "13.5px",
+      },
   },
 }));
 
