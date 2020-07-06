@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 // @material-ui/icons
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/Add";
 // core components
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +59,8 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Brand"
             variant="filled"
+            value={this.state.brand}
+            onChange={this.onChange}
             fullWidth
           />
           <TextField
@@ -66,6 +68,8 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Modle"
             variant="filled"
+            value={this.state.modle}
+            onChange={this.onChange}
             fullWidth
           />
           <TextField
@@ -73,6 +77,8 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Applicability"
             variant="filled"
+            value={this.state.applicability}
+            onChange={this.onChange}
             fullWidth
           />
           <TextField
@@ -80,6 +86,8 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Part number"
             variant="filled"
+            value={this.state.part_number}
+            onChange={this.onChange}
             fullWidth
           />
           <TextField
@@ -87,6 +95,8 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Production period"
             variant="filled"
+            value={this.state.production_period}
+            onChange={this.onChange}
             fullWidth
           />
           <TextField
@@ -94,6 +104,8 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Image URL"
             variant="filled"
+            value={this.state.image_url}
+            onChange={this.onChange}
             fullWidth
           />
           <TextField
@@ -101,6 +113,8 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Base price"
             variant="filled"
+            value={this.state.base_price}
+            onChange={this.onChange}
             fullWidth
           />
         </Grid>
@@ -110,6 +124,7 @@ export default function AddPartSection() {
             color="default"
             className={classes.button}
             startIcon={<AddIcon />}
+            onClick={this.onSubmit}
           >
             Add
           </Button>
