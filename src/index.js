@@ -7,12 +7,14 @@ import { Router, Route, Switch } from "react-router-dom";
 
 // pages for this product
 import MainPage from "./views/MainPage/MainPage.js";
+import AddPartPage from "./views/AddPartPage/AddPartPage.js"
 
 var hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
+      <Route path="/add-part" component={AddPartPage} />
       <Route path="/" component={MainPage} />
     </Switch>
   </Router>,

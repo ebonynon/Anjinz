@@ -14,7 +14,6 @@ import Parallax from "../../components/Parallax/Parallax.js";
 import mainPageStyles from "../../assets/css/_views/mainPage.js";
 
 // Sections for this page
-//import SectionAboutUs from "./Sections/AboutUsSection.js";
 import SearchSection from "./Sections/SearchSection.js";
 import CardSection from "./Sections/CardSection.js"
 

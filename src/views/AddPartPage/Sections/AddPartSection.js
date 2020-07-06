@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 // @material-ui/icons
-import SearchIcon from "@material-ui/icons/Search";
+import AddIcon from '@material-ui/icons/Add';
 // core components
 
 const useStyles = makeStyles((theme) => ({
@@ -17,14 +17,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     [theme.breakpoints.up("lg")]: {
       width: "97ch",
-    },
-    //width: "97ch",
-  },
-  textFieldMini: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.up("lg")]: {
-      width: "31.5ch",
     },
     //width: "97ch",
   },
@@ -44,12 +36,12 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: "20px",
     },
     [theme.breakpoints.down("sm")]: {
-        marginLeft: "13.5px",
-      },
+      marginLeft: "13.5px",
+    },
   },
 }));
 
-export default function SearchSection() {
+export default function AddPartSection() {
   const classes = useStyles();
 
   return (
@@ -61,49 +53,65 @@ export default function SearchSection() {
         justify="flex-start"
         alignItems="center"
       >
-        <Grid item className={classes.gridItem} xs={12} lg={12}>
+        <Grid item className={classes.gridItem} xs={10} lg={12}>
+          <TextField
+            className={classes.textField}
+            id="outlined-basic"
+            label="Brand"
+            variant="filled"
+            fullWidth
+          />
+          <TextField
+            className={classes.textField}
+            id="outlined-basic"
+            label="Modle"
+            variant="filled"
+            fullWidth
+          />
+          <TextField
+            className={classes.textField}
+            id="outlined-basic"
+            label="Applicability"
+            variant="filled"
+            fullWidth
+          />
           <TextField
             className={classes.textField}
             id="outlined-basic"
             label="Part number"
             variant="filled"
-            //fullWidth
+            fullWidth
           />
-          <Button
-            variant="contained"
-            color="default"
-            className={classes.button}
-            startIcon={<SearchIcon />}
-          >
-            Search
-          </Button>
+          <TextField
+            className={classes.textField}
+            id="outlined-basic"
+            label="Production period"
+            variant="filled"
+            fullWidth
+          />
+          <TextField
+            className={classes.textField}
+            id="outlined-basic"
+            label="Image URL"
+            variant="filled"
+            fullWidth
+          />
+          <TextField
+            className={classes.textField}
+            id="outlined-basic"
+            label="Base price"
+            variant="filled"
+            fullWidth
+          />
         </Grid>
         <Grid item className={classes.gridItem}>
-          <TextField
-            className={classes.textFieldMini}
-            id="outlined-basic"
-            label="Brand"
-            variant="filled"
-          />
-          <TextField
-            className={classes.textFieldMini}
-            id="outlined-basic"
-            label="Modle"
-            variant="filled"
-          />
-          <TextField
-            className={classes.textFieldMini}
-            id="outlined-basic"
-            label="Part name"
-            variant="filled"
-          />
           <Button
             variant="contained"
             color="default"
             className={classes.button}
-            startIcon={<SearchIcon />}
+            startIcon={<AddIcon />}
           >
-            Search
+            Add
           </Button>
         </Grid>
       </Grid>
