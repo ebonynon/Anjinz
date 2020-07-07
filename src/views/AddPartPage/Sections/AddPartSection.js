@@ -50,6 +50,7 @@ export default function AddPartSection() {
     modle: "",
     applicability: "",
     part_number: "",
+    part_name: "",
     production_period: "",
     image_url: "",
     base_price: "",
@@ -70,6 +71,7 @@ export default function AddPartSection() {
       modle: form.modle,
       applicability: form.applicability,
       part_number: form.part_number,
+      part_name: form.part_name,
       production_period: form.production_period,
       image_url: form.image_url,
       base_price: form.base_price,
@@ -82,6 +84,7 @@ export default function AddPartSection() {
           modle: "",
           applicability: "",
           part_number: "",
+          part_name: "",
           production_period: "",
           image_url: "",
           base_price: "",
@@ -140,6 +143,16 @@ export default function AddPartSection() {
             label="Part number"
             variant="filled"
             value={form.part_number}
+            onChange={updateField}
+            fullWidth
+          />
+          <TextField
+            className={classes.textField}
+            id="outlined-basic"
+            name="part_name"
+            label="Part name"
+            variant="filled"
+            value={form.part_name}
             onChange={updateField}
             fullWidth
           />
