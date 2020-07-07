@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -44,6 +44,54 @@ const useStyles = makeStyles((theme) => ({
 export default function AddPartSection() {
   const classes = useStyles();
 
+  const [form, setValue] = useState({
+    brand: "",
+    modle: "",
+    applicability: "",
+    part_number: "",
+    production_period: "",
+    image_url: "",
+    base_price: "",
+  });
+
+  const updateField = (e) => {
+    setValue({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      brand: form.brand,
+      modle: form.modle,
+      applicability: form.applicability,
+      part_number: form.part_number,
+      production_period: form.production_period,
+      image_url: form.image_url,
+      base_price: form.base_price,
+    };
+    axios
+      .post("https://anjinz-api.vercel.app/api/parts", data)
+      .then((res) => {
+        this.setState({
+          brand: "",
+          modle: "",
+          applicability: "",
+          part_number: "",
+          production_period: "",
+          image_url: "",
+          base_price: "",
+        });
+        this.props.history.push("/");
+      })
+      .catch((err) => {
+        console.log("Error in AddPart!");
+      });
+  };
+
   return (
     <div className={classes.root}>
       <Grid
@@ -59,7 +107,7 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Brand"
             variant="filled"
-            value={this.state.brand}
+            value={form.brand}
             onChange={this.onChange}
             fullWidth
           />
@@ -68,7 +116,7 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Modle"
             variant="filled"
-            value={this.state.modle}
+            value={form.modle}
             onChange={this.onChange}
             fullWidth
           />
@@ -77,7 +125,7 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Applicability"
             variant="filled"
-            value={this.state.applicability}
+            value={form.applicability}
             onChange={this.onChange}
             fullWidth
           />
@@ -86,7 +134,7 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Part number"
             variant="filled"
-            value={this.state.part_number}
+            value={form.part_number}
             onChange={this.onChange}
             fullWidth
           />
@@ -95,7 +143,7 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Production period"
             variant="filled"
-            value={this.state.production_period}
+            value={form.production_period}
             onChange={this.onChange}
             fullWidth
           />
@@ -104,7 +152,7 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Image URL"
             variant="filled"
-            value={this.state.image_url}
+            value={form.image_url}
             onChange={this.onChange}
             fullWidth
           />
@@ -113,7 +161,7 @@ export default function AddPartSection() {
             id="outlined-basic"
             label="Base price"
             variant="filled"
-            value={this.state.base_price}
+            value={form.base_price}
             onChange={this.onChange}
             fullWidth
           />
@@ -124,7 +172,7 @@ export default function AddPartSection() {
             color="default"
             className={classes.button}
             startIcon={<AddIcon />}
-            onClick={this.onSubmit}
+            onClick={onSubmit}
           >
             Add
           </Button>
