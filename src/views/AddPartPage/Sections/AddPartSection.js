@@ -106,6 +106,7 @@ export default function AddPartSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="brand"
             label="Brand"
             variant="filled"
             value={form.brand}
@@ -115,6 +116,7 @@ export default function AddPartSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="modle"
             label="Modle"
             variant="filled"
             value={form.modle}
@@ -124,6 +126,7 @@ export default function AddPartSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="applicability"
             label="Applicability"
             variant="filled"
             value={form.applicability}
@@ -133,6 +136,7 @@ export default function AddPartSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="part_number"
             label="Part number"
             variant="filled"
             value={form.part_number}
@@ -142,6 +146,7 @@ export default function AddPartSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="production_period"
             label="Production period"
             variant="filled"
             value={form.production_period}
@@ -151,6 +156,7 @@ export default function AddPartSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="image_url"
             label="Image URL"
             variant="filled"
             value={form.image_url}
@@ -160,6 +166,7 @@ export default function AddPartSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="base_price"
             label="Base price"
             variant="filled"
             value={form.base_price}
