@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -53,6 +54,64 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchSection() {
   const classes = useStyles();
 
+  const [form, setValue] = useState({
+    brand: "",
+    modle: "",
+    part_number: "",
+    part_name: "",
+  });
+
+  const [ResData, setResData] = useState([]);
+
+  const updateField = (e) => {
+    setValue({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      brand: form.brand,
+      modle: form.modle,
+      part_number: form.part_number,
+      part_name: form.part_name,
+    };
+    axios
+      .post("https://anjinz-api.vercel.app/api/parts", data)
+      .then((res) => {
+        this.setState({
+          brand: "",
+          modle: "",
+          applicability: "",
+          part_number: "",
+          part_name: "",
+          production_period: "",
+          image_url: "",
+          base_price: "",
+        });
+        this.props.history.push("/");
+      })
+      .catch((err) => {
+        console.log("Error in SearchPart!");
+      });
+  };
+
+  const onSubmitPN = (e) => {
+    e.preventDefault();
+
+    axios
+      .get(`http://localhost:8082/api/parts?part_number=${form.part_number}`)
+      .then((res) => {
+        setResData(res.data)
+      })
+      .catch((err) => {
+        console.log("Error in SearchPart-PN");
+      });
+  };
+  console.log("ResData :", ResData);
   return (
     <div className={classes.root}>
       <Grid
@@ -66,8 +125,11 @@ export default function SearchSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="part_number"
             label="Part number"
             variant="filled"
+            value={form.part_number}
+            onChange={updateField}
             //fullWidth
           />
           <Button
@@ -75,6 +137,7 @@ export default function SearchSection() {
             color="default"
             className={classes.button}
             startIcon={<SearchIcon />}
+            onClick={onSubmitPN}
           >
             Search
           </Button>
@@ -83,36 +146,41 @@ export default function SearchSection() {
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
+            name="part_brand"
             label="Brand"
             variant="filled"
+            value={form.part_brand}
+            onChange={updateField}
           />
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
+            name="modle"
             label="Modle"
             variant="filled"
+            value={form.modle}
+            onChange={updateField}
           />
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
+            name="part_name"
             label="Part name"
             variant="filled"
+            value={form.part_name}
+            onChange={updateField}
           />
           <Button
             variant="contained"
             color="default"
             className={classes.button}
             startIcon={<SearchIcon />}
+            onClick={onSubmit}
           >
             Search
           </Button>
         </Grid>
-        <CardSection />
-        <CardSection />
-        <CardSection />
-        <CardSection />
-        <CardSection />
-        <CardSection />
+        {/* {CardSectionList} */}
       </Grid>
     </div>
   );
