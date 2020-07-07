@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -7,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 // @material-ui/icons
 import SearchIcon from "@material-ui/icons/Search";
 // core components
+import CardSection from "./CardSection.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,13 +46,68 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: "20px",
     },
     [theme.breakpoints.down("sm")]: {
-        marginLeft: "13.5px",
-      },
+      marginLeft: "13.5px",
+    },
   },
 }));
 
 export default function SearchSection() {
   const classes = useStyles();
+
+  const [form, setValue] = useState({
+    brand: "",
+    modle: "",
+    part_number: "",
+    part_name: "",
+  });
+
+  const [ResData, setResData] = useState([]);
+
+  const updateField = (e) => {
+    setValue({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .get(
+        `https://anjinz-api.vercel.app/api/parts?brand=${form.brand}&modle=${form.modle}&part_name=${form.part_name}`
+      )
+      .then((res) => {
+        setResData(res.data);
+      })
+      .catch((err) => {
+        console.log("Error in SearchPart!");
+      });
+  };
+
+  const onSubmitPN = (e) => {
+    e.preventDefault();
+
+    axios
+      .get(`https://anjinz-api.vercel.app/api/parts?part_number=${form.part_number}`)
+      .then((res) => {
+        setResData(res.data);
+      })
+      .catch((err) => {
+        console.log("Error in SearchPart-PN!");
+      });
+  };
+  // console.log("ResData :", ResData);
+
+  var CardSectionList;
+
+  if (!ResData) {
+    CardSectionList = "Part is not availabe";
+  } else {
+    CardSectionList = ResData.map((part, index) => (
+      <CardSection part={part} key={index} />
+    ));
+  }
 
   return (
     <div className={classes.root}>
@@ -65,8 +122,11 @@ export default function SearchSection() {
           <TextField
             className={classes.textField}
             id="outlined-basic"
+            name="part_number"
             label="Part number"
             variant="filled"
+            value={form.part_number}
+            onChange={updateField}
             //fullWidth
           />
           <Button
@@ -74,6 +134,7 @@ export default function SearchSection() {
             color="default"
             className={classes.button}
             startIcon={<SearchIcon />}
+            onClick={onSubmitPN}
           >
             Search
           </Button>
@@ -82,30 +143,41 @@ export default function SearchSection() {
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
+            name="brand"
             label="Brand"
             variant="filled"
+            value={form.brand}
+            onChange={updateField}
           />
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
+            name="modle"
             label="Modle"
             variant="filled"
+            value={form.modle}
+            onChange={updateField}
           />
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
+            name="part_name"
             label="Part name"
             variant="filled"
+            value={form.part_name}
+            onChange={updateField}
           />
           <Button
             variant="contained"
             color="default"
             className={classes.button}
             startIcon={<SearchIcon />}
+            onClick={onSubmit}
           >
             Search
           </Button>
         </Grid>
+        {CardSectionList}
       </Grid>
     </div>
   );

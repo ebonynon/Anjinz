@@ -17,6 +17,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
+import Grid from "@material-ui/core/Grid";
 // @material-ui/icons
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(2),
     maxWidth: 345,
     boxShadow:
       "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
@@ -35,9 +37,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardSection() {
+export default function CardSection(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const part = props.part;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -48,67 +51,69 @@ export default function CardSection() {
   }
 
   const rows = [
-    createData("Brand", "Toyota"),
-    createData("Modle", "Allion"),
-    createData("Applicability", "1NZFE..NZT260"),
-    createData("OEM part number", "13011-21090"),
-    createData("Production period", "05.2007 - 06.2008"),
+    createData("Brand", `${part.brand}`),
+    createData("Modle", `${part.modle}`),
+    createData("Applicability", `${part.applicability}`),
+    createData("OEM part number", `${part.part_number}`),
+    createData("Production period", `${part.production_period}`),
   ];
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://toyota.epc-data.com/imgjp/A2/131198.png"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            13011-21090
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            RING SET, PISTON
-          </Typography>
-          <Typography variant="h6" color="secondary" component="p">
-            Rs 9,435
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Pick it
-        </Button>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="part table">
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.name}>
-                    <TableCell align="left">{row.prop}</TableCell>
-                    <TableCell align="right">{row.val}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </CardContent>
-      </Collapse>
-    </Card>
+    <Grid item xs={12} lg={4}>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={`${part.image_url}`}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {part.part_number}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {part.part_name}
+            </Typography>
+            <Typography variant="h6" color="secondary" component="p">
+              {part.base_price}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Pick it
+          </Button>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="part table">
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow key={row.name}>
+                      <TableCell align="left">{row.prop}</TableCell>
+                      <TableCell align="right">{row.val}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </Grid>
   );
 }
