@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 // @material-ui/icons
 import SearchIcon from "@material-ui/icons/Search";
 // core components
+import CardSection from "./CardSection.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: "20px",
     },
     [theme.breakpoints.down("sm")]: {
-        marginLeft: "13.5px",
-      },
+      marginLeft: "13.5px",
+    },
   },
 }));
 
@@ -106,6 +107,12 @@ export default function SearchSection() {
             Search
           </Button>
         </Grid>
+        <CardSection />
+        <CardSection />
+        <CardSection />
+        <CardSection />
+        <CardSection />
+        <CardSection />
       </Grid>
     </div>
   );
