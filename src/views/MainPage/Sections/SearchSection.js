@@ -73,26 +73,12 @@ export default function SearchSection() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
-      brand: form.brand,
-      modle: form.modle,
-      part_number: form.part_number,
-      part_name: form.part_name,
-    };
     axios
-      .post("https://anjinz-api.vercel.app/api/parts", data)
+      .get(
+        `https://anjinz-api.vercel.app/api/parts?brand=${form.brand}&modle=${form.modle}&part_name=${form.part_name}`
+      )
       .then((res) => {
-        this.setState({
-          brand: "",
-          modle: "",
-          applicability: "",
-          part_number: "",
-          part_name: "",
-          production_period: "",
-          image_url: "",
-          base_price: "",
-        });
-        this.props.history.push("/");
+        setResData(res.data);
       })
       .catch((err) => {
         console.log("Error in SearchPart!");
@@ -103,22 +89,24 @@ export default function SearchSection() {
     e.preventDefault();
 
     axios
-      .get(`http://localhost:8082/api/parts?part_number=${form.part_number}`)
+      .get(`https://anjinz-api.vercel.app/api/parts?part_number=${form.part_number}`)
       .then((res) => {
         setResData(res.data);
       })
       .catch((err) => {
-        console.log("Error in SearchPart-PN");
+        console.log("Error in SearchPart-PN!");
       });
   };
-  console.log("ResData :", ResData);
+  // console.log("ResData :", ResData);
 
   var CardSectionList;
 
-  if (!ResData){
-    CardSectionList = " Part is not availabe "
+  if (!ResData) {
+    CardSectionList = "Part is not availabe";
   } else {
-    CardSectionList = ResData.map((part, index) => <CardSection part={part} key={index} />);
+    CardSectionList = ResData.map((part, index) => (
+      <CardSection part={part} key={index} />
+    ));
   }
 
   return (
@@ -155,10 +143,10 @@ export default function SearchSection() {
           <TextField
             className={classes.textFieldMini}
             id="outlined-basic"
-            name="part_brand"
+            name="brand"
             label="Brand"
             variant="filled"
-            value={form.part_brand}
+            value={form.brand}
             onChange={updateField}
           />
           <TextField

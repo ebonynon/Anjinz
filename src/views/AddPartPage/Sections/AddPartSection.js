@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Alert from "@material-ui/lab/Alert";
 // @material-ui/icons
 import AddIcon from "@material-ui/icons/Add";
 // core components
@@ -44,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddPartSection() {
   const classes = useStyles();
+  const [alert, setAlert] = useState();
+  const [alertType, setAlertType] = useState();
 
   const [form, setValue] = useState({
     brand: "",
@@ -89,9 +92,13 @@ export default function AddPartSection() {
           image_url: "",
           base_price: "",
         });
+        setAlertType("success");
+        setAlert(res.status);
         this.props.history.push("/");
       })
       .catch((err) => {
+        setAlertType("error");
+        setAlert(err.message);
         console.log("Error in AddPart!");
       });
   };
@@ -198,6 +205,7 @@ export default function AddPartSection() {
             Add
           </Button>
         </Grid>
+        <Alert severity={`${alertType}`}>{alert}</Alert>
       </Grid>
     </div>
   );

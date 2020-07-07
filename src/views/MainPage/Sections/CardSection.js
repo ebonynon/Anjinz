@@ -51,8 +51,8 @@ export default function CardSection(props) {
   }
 
   const rows = [
-    createData("Brand", `${part.part_name}`),
-    createData("Modle", `${part.part_modle}`),
+    createData("Brand", `${part.brand}`),
+    createData("Modle", `${part.modle}`),
     createData("Applicability", `${part.applicability}`),
     createData("OEM part number", `${part.part_number}`),
     createData("Production period", `${part.production_period}`),
