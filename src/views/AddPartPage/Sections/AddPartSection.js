@@ -109,7 +109,7 @@ export default function AddPartSection() {
             label="Brand"
             variant="filled"
             value={form.brand}
-            onChange={this.onChange}
+            onChange={updateField}
             fullWidth
           />
           <TextField
@@ -118,7 +118,7 @@ export default function AddPartSection() {
             label="Modle"
             variant="filled"
             value={form.modle}
-            onChange={this.onChange}
+            onChange={updateField}
             fullWidth
           />
           <TextField
@@ -127,7 +127,7 @@ export default function AddPartSection() {
             label="Applicability"
             variant="filled"
             value={form.applicability}
-            onChange={this.onChange}
+            onChange={updateField}
             fullWidth
           />
           <TextField
@@ -136,7 +136,7 @@ export default function AddPartSection() {
             label="Part number"
             variant="filled"
             value={form.part_number}
-            onChange={this.onChange}
+            onChange={updateField}
             fullWidth
           />
           <TextField
@@ -145,7 +145,7 @@ export default function AddPartSection() {
             label="Production period"
             variant="filled"
             value={form.production_period}
-            onChange={this.onChange}
+            onChange={updateField}
             fullWidth
           />
           <TextField
@@ -154,7 +154,7 @@ export default function AddPartSection() {
             label="Image URL"
             variant="filled"
             value={form.image_url}
-            onChange={this.onChange}
+            onChange={updateField}
             fullWidth
           />
           <TextField
@@ -163,7 +163,7 @@ export default function AddPartSection() {
             label="Base price"
             variant="filled"
             value={form.base_price}
-            onChange={this.onChange}
+            onChange={updateField}
             fullWidth
           />
         </Grid>
