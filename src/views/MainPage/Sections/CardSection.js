@@ -37,9 +37,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardSection() {
+export default function CardSection(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const part = props.part;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -50,11 +51,11 @@ export default function CardSection() {
   }
 
   const rows = [
-    createData("Brand", "Toyota"),
-    createData("Modle", "Allion"),
-    createData("Applicability", "1NZFE..NZT260"),
-    createData("OEM part number", "13011-21090"),
-    createData("Production period", "05.2007 - 06.2008"),
+    createData("Brand", `${part.part_name}`),
+    createData("Modle", `${part.part_modle}`),
+    createData("Applicability", `${part.applicability}`),
+    createData("OEM part number", `${part.part_number}`),
+    createData("Production period", `${part.production_period}`),
   ];
 
   return (
@@ -63,18 +64,18 @@ export default function CardSection() {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image="https://toyota.epc-data.com/imgjp/A2/131198.png"
+            image={`${part.image_url}`}
             title="Contemplative Reptile"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              13011-21090
+              {part.part_number}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              RING SET, PISTON
+              {part.part_name}
             </Typography>
             <Typography variant="h6" color="secondary" component="p">
-              Rs 9,435
+              {part.base_price}
             </Typography>
           </CardContent>
         </CardActionArea>

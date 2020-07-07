@@ -105,13 +105,22 @@ export default function SearchSection() {
     axios
       .get(`http://localhost:8082/api/parts?part_number=${form.part_number}`)
       .then((res) => {
-        setResData(res.data)
+        setResData(res.data);
       })
       .catch((err) => {
         console.log("Error in SearchPart-PN");
       });
   };
   console.log("ResData :", ResData);
+
+  var CardSectionList;
+
+  if (!ResData){
+    CardSectionList = " Part is not availabe "
+  } else {
+    CardSectionList = ResData.map((part, index) => <CardSection part={part} key={index} />);
+  }
+
   return (
     <div className={classes.root}>
       <Grid
@@ -180,7 +189,7 @@ export default function SearchSection() {
             Search
           </Button>
         </Grid>
-        {/* {CardSectionList} */}
+        {CardSectionList}
       </Grid>
     </div>
   );
