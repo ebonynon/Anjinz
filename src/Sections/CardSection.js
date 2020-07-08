@@ -17,6 +17,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
+import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Lightbox from "react-image-lightbox";
 // @material-ui/icons
@@ -43,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
 export default function CardSection(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [Image, setImage] = React.useState({ photoIndex: 0, isOpen: false });
-  const { photoIndex, isOpen } = Image;
+  const [Image, setImage] = React.useState({ isOpen: false });
+  const { isOpen } = Image;
   const part = props.part;
 
   const share = async () => {
@@ -84,7 +85,7 @@ export default function CardSection(props) {
             className={classes.media}
             image={`${part.image_url}`}
             onClick={() => setImage({ isOpen: true })}
-            title="Contemplative Reptile"
+            title={`${part.part_name}`}
           />
           {isOpen && (
             <Lightbox
@@ -124,18 +125,20 @@ export default function CardSection(props) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="part table">
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow key={row.name}>
-                      <TableCell align="left">{row.prop}</TableCell>
-                      <TableCell align="right">{row.val}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <Link href={`/part/${part._id}`}>
+              <TableContainer component={Paper}>
+                <Table aria-label="part table">
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow key={row.name}>
+                        <TableCell align="left">{row.prop}</TableCell>
+                        <TableCell align="right">{row.val}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Link>
           </CardContent>
         </Collapse>
       </Card>
