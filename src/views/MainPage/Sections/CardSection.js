@@ -42,6 +42,19 @@ export default function CardSection(props) {
   const [expanded, setExpanded] = React.useState(false);
   const part = props.part;
 
+  const share = async () => {
+    try {
+      await navigator.share({
+        title: `${part.part_number}`,
+        text: `${part.part_name}`,
+        url: `/part/${part._id}`,
+      });
+      console.log("Thanks for sharing!");
+    } catch (err) {
+      console.log(`Couldn't share because of`, err);
+    }
+  };
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -83,7 +96,7 @@ export default function CardSection(props) {
           <Button size="small" color="primary">
             Pick it
           </Button>
-          <IconButton aria-label="share">
+          <IconButton aria-label="share" onClick={share}>
             <ShareIcon />
           </IconButton>
           <IconButton
