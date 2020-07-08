@@ -22,7 +22,8 @@ import Grid from "@material-ui/core/Grid";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // core components
-
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css"; // This only needs to be imported once in your app
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: theme.spacing(1),
@@ -40,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
 export default function CardSection(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [Image, setImage] = React.useState({ photoIndex: 0, isOpen: false });
+  const { photoIndex, isOpen } = Image;
   const part = props.part;
 
   const share = async () => {
@@ -78,8 +81,15 @@ export default function CardSection(props) {
           <CardMedia
             className={classes.media}
             image={`${part.image_url}`}
+            onClick={() => setImage({ isOpen: true })}
             title="Contemplative Reptile"
           />
+          {isOpen && (
+            <Lightbox
+              mainSrc={`${part.image_url}`}
+              onCloseRequest={() => setImage({ isOpen: false })}
+            />
+          )}
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {part.part_number}
