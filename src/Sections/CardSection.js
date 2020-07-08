@@ -17,11 +17,15 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
+import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
+import Lightbox from "react-image-lightbox";
 // @material-ui/icons
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // core components
+
+import "react-image-lightbox/style.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
 export default function CardSection(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [Image, setImage] = React.useState({ isOpen: false });
+  const { isOpen } = Image;
   const part = props.part;
 
   const share = async () => {
@@ -78,8 +84,15 @@ export default function CardSection(props) {
           <CardMedia
             className={classes.media}
             image={`${part.image_url}`}
-            title="Contemplative Reptile"
+            onClick={() => setImage({ isOpen: true })}
+            title={`${part.part_name}`}
           />
+          {isOpen && (
+            <Lightbox
+              mainSrc={`${part.image_url}`}
+              onCloseRequest={() => setImage({ isOpen: false })}
+            />
+          )}
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {part.part_number}
@@ -112,18 +125,20 @@ export default function CardSection(props) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="part table">
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow key={row.name}>
-                      <TableCell align="left">{row.prop}</TableCell>
-                      <TableCell align="right">{row.val}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <Link href={`/part/${part._id}`}>
+              <TableContainer component={Paper}>
+                <Table aria-label="part table">
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow key={row.name}>
+                        <TableCell align="left">{row.prop}</TableCell>
+                        <TableCell align="right">{row.val}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Link>
           </CardContent>
         </Collapse>
       </Card>
