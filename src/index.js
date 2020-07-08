@@ -23,109 +23,6 @@ import AddPartSection from "./Sections/AddPartSection.js";
 const useStyles = makeStyles(mainPageStyles);
 var hist = createBrowserHistory();
 
-// export default function MainPage(props) {
-//   const classes = useStyles();
-
-//   return (
-//     <div>
-//       <Header />
-//       <Parallax filter image={require("./assets/img/Car-Parts.jpg")}>
-//         <div className={classes.container}>
-//           <Grid container>
-//             <Grid item xs={12} sm={12} md={6}>
-//               <Typography variant="h4">
-//                 There is sometimes an incorrect assumption that the parser
-//                 itself is what of ESLint with TypeScript.
-//               </Typography>
-//             </Grid>
-//           </Grid>
-//         </div>
-//       </Parallax>
-//       <div className={classNames(classes.main, classes.mainRaised)}>
-//         <div className={classes.container}>
-//           {/*<SearchSection />
-//            <br></br> // tmp tag for spacing
-//           <CardSection />
-//           <br></br> // tmp tag for spacing */}
-//           ReactDOM.render(
-//           <Router history={hist}>
-//             <Switch>
-//               <Route path="/add-part" component={AddPartSection} />
-//               <Route path="/" component={SearchSection} />
-//             </Switch>
-//           </Router>
-//           , document.getElementById("root") );
-//         </div>
-//       </div>
-//       <Footer />
-//     </div>
-//   );
-// }
-
-// export default function MainPage(props) {
-//   const classes = useStyles();
-
-//   return (
-//     <div>
-//       <Header />
-//       <Parallax filter image={require("./assets/img/Car-Parts.jpg")}>
-//         <div className={classes.container}>
-//           <Grid container>
-//             <Grid item xs={12} sm={12} md={6}>
-//               <Typography variant="h4">
-//                 There is sometimes an incorrect assumption that the parser
-//                 itself is what of ESLint with TypeScript.
-//               </Typography>
-//             </Grid>
-//           </Grid>
-//         </div>
-//       </Parallax>
-//       <div className={classNames(classes.main, classes.mainRaised)}>
-//         <div className={classes.container}>
-//{
-/*<SearchSection />
-           <br></br> // tmp tag for spacing
-          <CardSection />
-          <br></br> // tmp tag for spacing */
-//}
-// ReactDOM.render(function MainPage(params) {
-//   const classes = useStyles();
-//   return (
-//     <div>
-//       <Header />
-//       <Parallax filter image={require("./assets/img/Car-Parts.jpg")}>
-//         <div className={classes.container}>
-//           <Grid container>
-//             <Grid item xs={12} sm={12} md={6}>
-//               <Typography variant="h4">
-//                 There is sometimes an incorrect assumption that the parser
-//                 itself is what of ESLint with TypeScript.
-//               </Typography>
-//             </Grid>
-//           </Grid>
-//         </div>
-//       </Parallax>
-//       <div className={classNames(classes.main, classes.mainRaised)}>
-//         <div className={classes.container}>
-//           <Router history={hist}>
-//             <Switch>
-//               <Route path="/add-part" component={AddPartSection} />
-//               <Route path="/" component={SearchSection} />
-//             </Switch>
-//           </Router>
-//         </div>
-//       </div>
-//       <Footer />
-//     </div>
-//   );
-// }, document.getElementById("root"));
-//         </div>
-//       </div>
-//       <Footer />
-//     </div>
-//   );
-// }
-
 function MainPage(params) {
   const classes = useStyles();
   return (
@@ -158,7 +55,4 @@ function MainPage(params) {
   );
 }
 
-ReactDOM.render(
-  <MainPage />,
-  document.getElementById("root")
-);
+ReactDOM.render(<MainPage />, document.getElementById("root"));
