@@ -18,12 +18,14 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Grid from "@material-ui/core/Grid";
+import Lightbox from "react-image-lightbox";
 // @material-ui/icons
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // core components
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css"; // This only needs to be imported once in your app
+
+import "react-image-lightbox/style.css";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: theme.spacing(1),
