@@ -20,8 +20,8 @@ import mainPageStyles from "./assets/css/_views/mainPage.js";
 import SearchSection from "./Sections/SearchSection.js";
 import AddPartSection from "./Sections/AddPartSection.js";
 import ShowPartSection from "./Sections/ShowPartSection.js";
-import Register from "./Sections/register.component.js";
-import Login from "./Sections/login.component.js";
+import SignupSection from "./Sections/SignupSection.js";
+import LoginSection from "./Sections/LoginSection.js";
 
 const useStyles = makeStyles(mainPageStyles);
 var hist = createBrowserHistory();
@@ -47,8 +47,8 @@ function MainPage(params) {
         <div className={classes.container}>
           <Router history={hist}>
             <Switch>
-              <Route path="/register" component={Register} />
-              <Route path="/login" component={Login} />
+              <Route path="/signup" component={SignupSection} />
+              <Route path="/login" component={LoginSection} />
               <Route path="/part/:id" component={ShowPartSection} />
               <Route path="/add-part" component={AddPartSection} />
               <Route path="/" component={SearchSection} />
