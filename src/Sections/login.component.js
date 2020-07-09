@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-//import axios from "axios";
 import AuthService from "../services/auth.service";
 
-const required = value => {
+import "../assets/css/bootstrap.min.css";
+
+const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -26,46 +27,28 @@ export default class Login extends Component {
       username: "",
       password: "",
       loading: false,
-      message: ""
+      message: "",
     };
   }
 
   onChangeUsername(e) {
     this.setState({
-      username: e.target.value
+      username: e.target.value,
     });
   }
 
   onChangePassword(e) {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   }
 
   handleLogin(e) {
     e.preventDefault();
 
-    // const data = {
-    //   email: this.state.username,
-    //   password: this.state.password
-    // };
-    // console.log("Data :" ,data);
-    // axios
-    //   .post('http://localhost:8082/users/login', data)
-    //   .then(res => {
-    //     this.setState({
-    //       email: '',
-    //       password:''
-    //     })
-    //     this.props.history.push("/");
-    //   })
-    //   .catch(err => {
-    //     console.log("Error in Login!");
-    //   })
-
     this.setState({
       message: "",
-      loading: true
+      loading: true,
     });
 
     this.form.validateAll();
@@ -76,7 +59,7 @@ export default class Login extends Component {
           this.props.history.push("/profile");
           window.location.reload();
         },
-        error => {
+        (error) => {
           const resMessage =
             (error.response &&
               error.response.data &&
@@ -86,13 +69,13 @@ export default class Login extends Component {
 
           this.setState({
             loading: false,
-            message: resMessage
+            message: resMessage,
           });
         }
       );
     } else {
       this.setState({
-        loading: false
+        loading: false,
       });
     }
   }
@@ -101,20 +84,16 @@ export default class Login extends Component {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
-
           <Form
             onSubmit={this.handleLogin}
-            ref={c => {
+            ref={(c) => {
               this.form = c;
             }}
           >
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username" class="text-dark">
+                <h4>Username</h4>
+              </label>
               <Input
                 type="text"
                 className="form-control"
@@ -126,7 +105,9 @@ export default class Login extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" class="text-dark">
+                <h4>Password</h4>
+              </label>
               <Input
                 type="password"
                 className="form-control"
@@ -158,7 +139,7 @@ export default class Login extends Component {
             )}
             <CheckButton
               style={{ display: "none" }}
-              ref={c => {
+              ref={(c) => {
                 this.checkBtn = c;
               }}
             />

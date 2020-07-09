@@ -3,10 +3,11 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-//import axios from "axios";
 import AuthService from "../services/auth.service";
 
-const required = value => {
+import "../assets/css/bootstrap.min.css";
+
+const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -16,7 +17,7 @@ const required = value => {
   }
 };
 
-const email = value => {
+const email = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -26,7 +27,7 @@ const email = value => {
   }
 };
 
-const vusername = value => {
+const vusername = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -36,7 +37,7 @@ const vusername = value => {
   }
 };
 
-const vpassword = value => {
+const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -59,54 +60,34 @@ export default class Register extends Component {
       email: "",
       password: "",
       successful: false,
-      message: ""
+      message: "",
     };
   }
 
   onChangeUsername(e) {
     this.setState({
-      username: e.target.value
+      username: e.target.value,
     });
   }
 
   onChangeEmail(e) {
     this.setState({
-      email: e.target.value
+      email: e.target.value,
     });
   }
 
   onChangePassword(e) {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   }
 
   handleRegister(e) {
     e.preventDefault();
 
-    // const data = {
-    //   name: this.state.username,
-    //   email: this.state.email,
-    //   password: this.state.password
-    // };
-    // console.log("Data :" ,data);
-    // axios
-    //   .post('http://localhost:8082/users/', data)
-    //   .then(res => {
-    //     this.setState({
-    //       name: '',
-    //       email: '',
-    //       password:''
-    //     })
-    //     this.props.history.push("/");
-    //   })
-    //   .catch(err => {
-    //     console.log("Error in Register!");
-    //   })
-
     this.setState({
       message: "",
-      successful: false
+      successful: false,
     });
 
     this.form.validateAll();
@@ -117,13 +98,13 @@ export default class Register extends Component {
         this.state.email,
         this.state.password
       ).then(
-        response => {
+        (response) => {
           this.setState({
             message: response.data.message,
-            successful: true
+            successful: true,
           });
         },
-        error => {
+        (error) => {
           const resMessage =
             (error.response &&
               error.response.data &&
@@ -133,7 +114,7 @@ export default class Register extends Component {
 
           this.setState({
             successful: false,
-            message: resMessage
+            message: resMessage,
           });
         }
       );
@@ -144,22 +125,18 @@ export default class Register extends Component {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
-
           <Form
             onSubmit={this.handleRegister}
-            ref={c => {
+            ref={(c) => {
               this.form = c;
             }}
           >
             {!this.state.successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="username" class="text-dark">
+                    <h4>Username</h4>
+                  </label>
                   <Input
                     type="text"
                     className="form-control"
@@ -171,7 +148,9 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email" class="text-dark">
+                    <h4>Email</h4>
+                  </label>
                   <Input
                     type="text"
                     className="form-control"
@@ -183,7 +162,9 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password" class="text-dark">
+                    <h4>Password</h4>
+                  </label>
                   <Input
                     type="password"
                     className="form-control"
@@ -216,7 +197,7 @@ export default class Register extends Component {
             )}
             <CheckButton
               style={{ display: "none" }}
-              ref={c => {
+              ref={(c) => {
                 this.checkBtn = c;
               }}
             />
