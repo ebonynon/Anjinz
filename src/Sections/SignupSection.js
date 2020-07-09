@@ -123,8 +123,8 @@ export default class SignupSection extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
+      <div className="">
+        <div className="">
           <Form
             onSubmit={this.handleRegister}
             ref={(c) => {

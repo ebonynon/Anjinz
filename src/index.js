@@ -15,6 +15,7 @@ import Footer from "./components/Footer/Footer.js"; // ⛳
 import Parallax from "./components/Parallax/Parallax.js";
 
 import mainPageStyles from "./assets/css/_views/mainPage.js";
+import "./assets/css/bootstrap.min.css"
 
 // Sections for this page
 import SearchSection from "./Sections/SearchSection.js";
