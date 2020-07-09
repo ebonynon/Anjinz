@@ -14,12 +14,14 @@ import Header from "./components/Header/Header.js"; // ⛳
 import Footer from "./components/Footer/Footer.js"; // ⛳
 import Parallax from "./components/Parallax/Parallax.js";
 
-import mainPageStyles from "./assets/css/_views/mainPageStyle.js";
+import mainPageStyles from "./assets/css/_views/mainPage.js";
+import "./assets/css/bootstrap.min.css"
 
 // Sections for this page
 import SearchSection from "./Sections/SearchSection.js";
 import AddPartSection from "./Sections/AddPartSection.js";
 import ShowPartSection from "./Sections/ShowPartSection.js";
+import SignupSection from "./Sections/SignupSection.js";
 import LoginSection from "./Sections/LoginSection.js";
 
 const useStyles = makeStyles(mainPageStyles);
@@ -46,6 +48,7 @@ function MainPage(params) {
         <div className={classes.container}>
           <Router history={hist}>
             <Switch>
+              <Route path="/signup" component={SignupSection} />
               <Route path="/login" component={LoginSection} />
               <Route path="/part/:id" component={ShowPartSection} />
               <Route path="/add-part" component={AddPartSection} />

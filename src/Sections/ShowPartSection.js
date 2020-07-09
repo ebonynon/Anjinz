@@ -24,14 +24,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  gridItem: {
-    [theme.breakpoints.down("md")]: {
-      marginLeft: "20px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: "13.5px",
-    },
-  },
 }));
 
 export default function ShowPartSection(props) {
@@ -91,7 +83,7 @@ export default function ShowPartSection(props) {
         justify="flex-start"
         alignItems="center"
       >
-        <Grid item className={classes.gridItem} xs={12} lg={12}>
+        <Grid item xs={12} lg={12}>
           <TableContainer component={Paper}>
             <Table aria-label="part table">
               <TableBody>
@@ -105,7 +97,7 @@ export default function ShowPartSection(props) {
             </Table>
           </TableContainer>
         </Grid>
-        <Grid item className={classes.gridItem}>
+        <Grid item xs={12} lg={12}>
           <Button size="small" color="primary">
             Pick it
           </Button>
@@ -113,7 +105,7 @@ export default function ShowPartSection(props) {
             <ShareIcon />
           </IconButton>
         </Grid>
-        <Grid item className={classes.gridItem} xs={12} lg={12}>
+        <Grid item xs={12} lg={12}>
           <img
             src={`${ResData.image_url}`}
             onClick={() => setImage({ isOpen: true })}

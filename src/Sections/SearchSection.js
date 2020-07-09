@@ -14,41 +14,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.up("lg")]: {
-      width: "97ch",
-    },
-    //width: "97ch",
-  },
-  textFieldMini: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.up("lg")]: {
-      width: "31.5ch",
-    },
-    //width: "97ch",
-  },
-  button: {
-    margin: theme.spacing(1),
-    position: "relative",
-    alignItems: "center",
-    justifyContent: "center",
-    float: "right!important",
-    [theme.breakpoints.down("md")]: {
-      paddingRight: "16px",
-      marginRight: "85px",
-    },
-  },
-  gridItem: {
-    [theme.breakpoints.down("md")]: {
-      marginLeft: "20px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: "13.5px",
-    },
-  },
 }));
 
 export default function SearchSection() {
@@ -89,7 +54,9 @@ export default function SearchSection() {
     e.preventDefault();
 
     axios
-      .get(`https://anjinz-api.vercel.app/api/parts?part_number=${form.part_number}`)
+      .get(
+        `https://anjinz-api.vercel.app/api/parts?part_number=${form.part_number}`
+      )
       .then((res) => {
         setResData(res.data);
       })
@@ -111,74 +78,69 @@ export default function SearchSection() {
 
   return (
     <div className={classes.root}>
-      <Grid
-        container
-        spacing={3}
-        direction="row"
-        justify="flex-start"
-        alignItems="center"
-      >
-        <Grid item className={classes.gridItem} xs={12} lg={12}>
+      <div class="container">
+        <div class="row justify-content-around align-items-center p-2">
           <TextField
-            className={classes.textField}
             id="outlined-basic"
             name="part_number"
             label="Part number"
             variant="filled"
             value={form.part_number}
             onChange={updateField}
-            //fullWidth
+            fullWidth={true}
+            class="col-md-10 col-sm-12"
           />
           <Button
             variant="contained"
             color="default"
-            className={classes.button}
             startIcon={<SearchIcon />}
             onClick={onSubmitPN}
           >
             Search
           </Button>
-        </Grid>
-        <Grid item className={classes.gridItem}>
+        </div>
+        <div class="row justify-content-around align-items-center p-2">
           <TextField
-            className={classes.textFieldMini}
+            class="col-md-3 col-sm-12"
             id="outlined-basic"
             name="brand"
             label="Brand"
             variant="filled"
             value={form.brand}
             onChange={updateField}
+            fullWidth={true}
           />
           <TextField
-            className={classes.textFieldMini}
+            class="col-md-3 col-sm-12"
             id="outlined-basic"
             name="modle"
             label="Modle"
             variant="filled"
             value={form.modle}
             onChange={updateField}
+            fullWidth={true}
           />
           <TextField
-            className={classes.textFieldMini}
+            class="col-md-3 col-sm-12"
             id="outlined-basic"
             name="part_name"
             label="Part name"
             variant="filled"
             value={form.part_name}
             onChange={updateField}
+            fullWidth={true}
           />
           <Button
             variant="contained"
             color="default"
-            className={classes.button}
             startIcon={<SearchIcon />}
             onClick={onSubmit}
           >
             Search
           </Button>
-        </Grid>
+        </div>
         {CardSectionList}
-      </Grid>
+      </div>
     </div>
   );
 }

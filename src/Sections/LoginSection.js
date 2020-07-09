@@ -1,137 +1,151 @@
-import React, { useState } from "react";
-// @material-ui/core components
+import React, { Component } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Alert from "@material-ui/lab/Alert";
-// @material-ui/icons
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-// core components
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.up("lg")]: {
-      width: "97ch",
-    },
-    //width: "97ch",
-  },
-  button: {
-    margin: theme.spacing(1),
-    position: "relative",
-    alignItems: "center",
-    justifyContent: "center",
-    float: "right!important",
-    [theme.breakpoints.down("md")]: {
-      paddingRight: "16px",
-      marginRight: "85px",
-    },
-  },
-  gridItem: {
-    [theme.breakpoints.down("md")]: {
-      marginLeft: "20px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: "13.5px",
-    },
-  },
-}));
+//import "../assets/css/bootstrap.min.css";
 
-export default function AddPartSection(props) {
-  const classes = useStyles();
+const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
 
-  const [form, setValue] = useState({
-    username: "",
-    password: "",
-    alert: "",
-    message: "",
-  });
+export default class LoginSection extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
 
-  const updateField = (e) => {
-    setValue({
-      ...form,
-      [e.target.name]: e.target.value,
+    this.state = {
+      username: "",
+      password: "",
+      loading: false,
+      message: "",
+    };
+  }
+
+  onChangeUsername(e) {
+    this.setState({
+      username: e.target.value,
     });
-  };
+  }
 
-  const onSubmit = (e) => {
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value,
+    });
+  }
+
+  handleLogin(e) {
     e.preventDefault();
 
-    setValue({ message: "", alert: "success" });
+    this.setState({
+      message: "",
+      loading: true,
+    });
 
-    AuthService.login(form.username, form.password).then(
-      (function login(props) {
-        props.history.push("/");
-        window.location.reload();
-      })(props),
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    this.form.validateAll();
 
-        setValue({
-          alert: "error",
-          message: resMessage,
-        });
-      },
-      [props]
-    );
-  };
+    if (this.checkBtn.context._errors.length === 0) {
+      AuthService.login(this.state.username, this.state.password).then(
+        () => {
+          this.props.history.push("/profile");
+          window.location.reload();
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
 
-  return (
-    <div className={classes.root}>
-      <Grid
-        container
-        spacing={3}
-        direction="row"
-        justify="flex-start"
-        alignItems="center"
-      >
-        <Grid item className={classes.gridItem} xs={10} lg={12}>
-          <TextField
-            className={classes.textField}
-            id="outlined-basic"
-            name="username"
-            label="Username"
-            variant="filled"
-            value={form.username}
-            onChange={updateField}
-            fullWidth
-          />
-          <TextField
-            className={classes.textField}
-            id="outlined-basic"
-            name="password"
-            label="Password"
-            type="password"
-            variant="filled"
-            value={form.password}
-            onChange={updateField}
-            fullWidth
-          />
-        </Grid>
-        <Grid item className={classes.gridItem}>
-          <Button
-            variant="contained"
-            color="default"
-            className={classes.button}
-            startIcon={<ExitToAppIcon />}
-            onClick={onSubmit}
+          this.setState({
+            loading: false,
+            message: resMessage,
+          });
+        }
+      );
+    } else {
+      this.setState({
+        loading: false,
+      });
+    }
+  }
+
+  render() {
+    return (
+      <div className="col-md-12">
+        <div className="card card-container">
+          <Form
+            onSubmit={this.handleLogin}
+            ref={(c) => {
+              this.form = c;
+            }}
           >
-            Login
-          </Button>
-        </Grid>
-        <Alert severity={`${form.alert}`}>{form.message}</Alert>
-      </Grid>
-    </div>
-  );
+            <div className="form-group">
+              <label htmlFor="username" class="text-dark">
+                <h4>Username</h4>
+              </label>
+              <Input
+                type="text"
+                className="form-control"
+                name="username"
+                value={this.state.username}
+                onChange={this.onChangeUsername}
+                validations={[required]}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password" class="text-dark">
+                <h4>Password</h4>
+              </label>
+              <Input
+                type="password"
+                className="form-control"
+                name="password"
+                value={this.state.password}
+                onChange={this.onChangePassword}
+                validations={[required]}
+              />
+            </div>
+
+            <div className="form-group">
+              <button
+                className="btn btn-primary btn-block"
+                disabled={this.state.loading}
+              >
+                {this.state.loading && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                <span>Login</span>
+              </button>
+            </div>
+
+            {this.state.message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert">
+                  {this.state.message}
+                </div>
+              </div>
+            )}
+            <CheckButton
+              style={{ display: "none" }}
+              ref={(c) => {
+                this.checkBtn = c;
+              }}
+            />
+          </Form>
+        </div>
+      </div>
+    );
+  }
 }
