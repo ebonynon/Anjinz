@@ -14,12 +14,13 @@ import Header from "./components/Header/Header.js"; // ⛳
 import Footer from "./components/Footer/Footer.js"; // ⛳
 import Parallax from "./components/Parallax/Parallax.js";
 
-import mainPageStyles from "./assets/css/_views/mainPage.js";
+import mainPageStyles from "./assets/css/_views/mainPageStyle.js";
 
 // Sections for this page
 import SearchSection from "./Sections/SearchSection.js";
 import AddPartSection from "./Sections/AddPartSection.js";
 import ShowPartSection from "./Sections/ShowPartSection.js";
+import LoginSection from "./Sections/LoginSection.js";
 
 const useStyles = makeStyles(mainPageStyles);
 var hist = createBrowserHistory();
@@ -45,6 +46,7 @@ function MainPage(params) {
         <div className={classes.container}>
           <Router history={hist}>
             <Switch>
+              <Route path="/login" component={LoginSection} />
               <Route path="/part/:id" component={ShowPartSection} />
               <Route path="/add-part" component={AddPartSection} />
               <Route path="/" component={SearchSection} />
