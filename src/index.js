@@ -14,7 +14,7 @@ import Header from "./components/Header/Header.js"; // ⛳
 import Footer from "./components/Footer/Footer.js"; // ⛳
 import Parallax from "./components/Parallax/Parallax.js";
 
-import mainPageStyles from "./assets/css/_views/mainPage.js";
+import mainPageStyles from "./assets/css/_views/mainPageStyle.js";
 import "./assets/css/bootstrap.min.css"
 
 // Sections for this page
