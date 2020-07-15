@@ -15,7 +15,8 @@ import Footer from "./components/Footer/Footer.js"; // ⛳
 import Parallax from "./components/Parallax/Parallax.js";
 
 import mainPageStyles from "./assets/css/_views/mainPageStyle.js";
-import "./assets/css/bootstrap.min.css"
+import "./assets/css/bootstrap.min.css";
+import "react-image-lightbox/style.css";
 
 // Sections for this page
 import SearchSection from "./Sections/SearchSection.js";

@@ -25,8 +25,6 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // core components
 
-import "react-image-lightbox/style.css";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: theme.spacing(1),

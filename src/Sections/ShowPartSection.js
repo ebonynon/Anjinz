@@ -18,8 +18,6 @@ import Lightbox from "react-image-lightbox";
 import ShareIcon from "@material-ui/icons/Share";
 // core components
 
-import "react-image-lightbox/style.css";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
