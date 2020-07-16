@@ -60,7 +60,7 @@ export default function DashboardSection(props) {
   useEffect(() => {
     function fetchCustomers(props) {
       axios
-        .get("http://localhost:8082/api/customers")
+        .get("https://anjinz-api.vercel.app/api/customers")
         .then((res) => {
           console.log("DashboardSection-API-response: " + res.data);
           setResData(res.data);
@@ -136,7 +136,7 @@ function TableRowCustomer(props) {
 
   function Axios(Data) {
     axios
-      .put("http://localhost:8082/api/customers/" + _customer._id, Data)
+      .put("https://anjinz-api.vercel.app/api/customers/" + _customer._id, Data)
       .then((res) => {})
       .catch((err) => {
         console.log("Error in TableRow!");

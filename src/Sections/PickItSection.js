@@ -81,7 +81,7 @@ export default function PickItSection(props) {
       status_three: false,
     };
     axios
-      .post("http://localhost:8082/api/customers", data)
+      .post("https://anjinz-api.vercel.app/api/customers", data)
       .then((res) => {
         setValue({
           part_number: "",
