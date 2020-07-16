@@ -82,7 +82,7 @@ export default function AddPartSection() {
     axios
       .post("https://anjinz-api.vercel.app/api/parts", data)
       .then((res) => {
-        this.setState({
+        setValue({
           brand: "",
           modle: "",
           applicability: "",
@@ -94,7 +94,7 @@ export default function AddPartSection() {
         });
         setAlertType("success");
         setAlert(res.status);
-        this.props.history.push("/");
+        //this.props.history.push("/");
       })
       .catch((err) => {
         setAlertType("error");
