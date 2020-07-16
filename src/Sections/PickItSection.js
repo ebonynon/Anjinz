@@ -76,6 +76,9 @@ export default function PickItSection(props) {
       phone_number: form.phone_number,
       address: form.address,
       email: form.email,
+      status_one: false,
+      status_two: false,
+      status_three: false,
     };
     axios
       .post("http://localhost:8082/api/customers", data)

@@ -116,36 +116,42 @@ function TableRowCustomer(props) {
     checkedThree: _customer.status_three,
   });
 
-  const handleChange = (event) => {
+  const handleChangeOne = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
+    const dataOne = { status_one: !state.checkedOne };
+    Axios(dataOne);
   };
 
-  function createData(
-    //_id,
-    nic_number,
-    customer_name
-    // status_one,
-    // status_two,
-    // status_three
-  ) {
+  const handleChangeTwo = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+    const dataTwo = { status_two: !state.checkedTwo };
+    Axios(dataTwo);
+  };
+
+  const handleChangeThree = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+    const dataThree = { status_three: !state.checkedThree };
+    Axios(dataThree);
+  };
+
+  function Axios(Data) {
+    axios
+      .put("http://localhost:8082/api/customers/" + _customer._id, Data)
+      .then((res) => {})
+      .catch((err) => {
+        console.log("Error in TableRow!");
+      });
+  }
+
+  function createData(nic_number, customer_name) {
     return {
-      //_id,
       nic_number,
       customer_name,
-      //   status_one,
-      //   status_two,
-      //   status_three,
     };
   }
 
   const rows = [
-    createData(
-      `${_customer.nic_number}`,
-      `${_customer.customer_name}`
-      //   `${_customer.status_one}`,
-      //   `${_customer.status_two}`,
-      //   `${_customer.status_three}`
-    ),
+    createData(`${_customer.nic_number}`, `${_customer.customer_name}`),
   ];
 
   return rows.map((row) => (
@@ -163,7 +169,7 @@ function TableRowCustomer(props) {
           control={
             <GreenCheckbox
               checked={state.checkedOne}
-              onChange={handleChange}
+              onChange={handleChangeOne}
               name="checkedOne"
             />
           }
@@ -175,7 +181,7 @@ function TableRowCustomer(props) {
           control={
             <YellowCheckbox
               checked={state.checkedTwo}
-              onChange={handleChange}
+              onChange={handleChangeTwo}
               name="checkedTwo"
             />
           }
@@ -187,7 +193,7 @@ function TableRowCustomer(props) {
           control={
             <RedCheckbox
               checked={state.checkedThree}
-              onChange={handleChange}
+              onChange={handleChangeThree}
               name="checkedThree"
             />
           }
