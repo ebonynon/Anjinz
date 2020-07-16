@@ -78,9 +78,9 @@ export default function PickItSection(props) {
       email: form.email,
     };
     axios
-      .post("https://anjinz-api.vercel.app/api/customers", data)
+      .post("http://localhost:8082/api/customers", data)
       .then((res) => {
-        this.setState({
+        setValue({
           part_number: "",
           customer_name: "",
           nic_number: "",
@@ -90,7 +90,7 @@ export default function PickItSection(props) {
         });
         setAlertType("success");
         setAlert(res.status);
-        this.props.history.push("/");
+        props.history.push("/");
       })
       .catch((err) => {
         setAlertType("error");
