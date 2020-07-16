@@ -24,6 +24,7 @@ import AddPartSection from "./Sections/AddPartSection.js";
 import ShowPartSection from "./Sections/ShowPartSection.js";
 import SignupSection from "./Sections/SignupSection.js";
 import LoginSection from "./Sections/LoginSection.js";
+import PickItSection from "./Sections/PickItSection.js";
 
 const useStyles = makeStyles(mainPageStyles);
 var hist = createBrowserHistory();
@@ -51,6 +52,7 @@ function MainPage(params) {
             <Switch>
               <Route path="/signup" component={SignupSection} />
               <Route path="/login" component={LoginSection} />
+              <Route path="/pickpart/:partnumber" component={PickItSection} />
               <Route path="/part/:id" component={ShowPartSection} />
               <Route path="/add-part" component={AddPartSection} />
               <Route path="/" component={SearchSection} />

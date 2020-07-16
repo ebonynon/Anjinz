@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
 import axios from "axios";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,6 +12,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
 import Lightbox from "react-image-lightbox";
 // @material-ui/icons
 import ShareIcon from "@material-ui/icons/Share";
@@ -43,7 +43,7 @@ export default function ShowPartSection(props) {
         });
     }
     fetchPart(props);
-  }, []);
+  }, [props]);
 
   const share = async () => {
     try {
@@ -96,9 +96,11 @@ export default function ShowPartSection(props) {
           </TableContainer>
         </Grid>
         <Grid item xs={12} lg={12}>
-          <Button size="small" color="primary">
-            Pick it
-          </Button>
+          <Link href={`/pickpart/${ResData.part_number}`}>
+            <Button size="small" color="primary">
+              Pick it
+            </Button>
+          </Link>
           <IconButton aria-label="share" onClick={share}>
             <ShareIcon />
           </IconButton>
@@ -106,6 +108,7 @@ export default function ShowPartSection(props) {
         <Grid item xs={12} lg={12}>
           <img
             src={`${ResData.image_url}`}
+            alt={`${ResData.part_number}`}
             onClick={() => setImage({ isOpen: true })}
           />
           {isOpen && (

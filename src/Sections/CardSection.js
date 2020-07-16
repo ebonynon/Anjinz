@@ -104,9 +104,11 @@ export default function CardSection(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Pick it
-          </Button>
+          <Link href={`/pickpart/${part.part_number}`}>
+            <Button size="small" color="primary">
+              Pick it
+            </Button>
+          </Link>
           <IconButton aria-label="share" onClick={share}>
             <ShareIcon />
           </IconButton>
