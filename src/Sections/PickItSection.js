@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Alert from "@material-ui/lab/Alert";
 // @material-ui/icons
-import AddIcon from "@material-ui/icons/Add";
+import SendIcon from "@material-ui/icons/Send";
 // core components
 
 const useStyles = makeStyles((theme) => ({
@@ -70,27 +70,23 @@ export default function PickItSection(props) {
     e.preventDefault();
 
     const data = {
-      brand: form.brand,
-      modle: form.modle,
-      applicability: form.applicability,
-      part_number: form.part_number,
-      part_name: form.part_name,
-      production_period: form.production_period,
-      image_url: form.image_url,
-      base_price: form.base_price,
+      part_number: props.match.params.partnumber,
+      customer_name: form.customer_name,
+      nic_number: form.nic_number,
+      phone_number: form.phone_number,
+      address: form.address,
+      email: form.email,
     };
     axios
-      .post("https://anjinz-api.vercel.app/api/parts", data)
+      .post("https://anjinz-api.vercel.app/api/customer", data)
       .then((res) => {
         this.setState({
-          brand: "",
-          modle: "",
-          applicability: "",
           part_number: "",
-          part_name: "",
-          production_period: "",
-          image_url: "",
-          base_price: "",
+          customer_name: "",
+          nic_number: "",
+          phone_number: "",
+          address: "",
+          email: "",
         });
         setAlertType("success");
         setAlert(res.status);
@@ -99,7 +95,7 @@ export default function PickItSection(props) {
       .catch((err) => {
         setAlertType("error");
         setAlert(err.message);
-        console.log("Error in AddPart!");
+        console.log("Error in submission!");
       });
   };
 
@@ -116,8 +112,8 @@ export default function PickItSection(props) {
           <TextField
             className={classes.textField}
             id="outlined-basic"
-            name="brand"
-            label="Brand"
+            name="part_number"
+            label="Part number"
             defaultValue={`${props.match.params.partnumber}`}
             variant="filled"
             //value={form.brand}
@@ -131,70 +127,54 @@ export default function PickItSection(props) {
           <TextField
             className={classes.textField}
             id="outlined-basic"
-            name="modle"
-            label="Modle"
+            name="customer_name"
+            label="Name"
             variant="filled"
-            value={form.modle}
+            value={form.customer_name}
             onChange={updateField}
             fullWidth
+            required
           />
           <TextField
             className={classes.textField}
             id="outlined-basic"
-            name="applicability"
-            label="Applicability"
+            name="nic_number"
+            label="NIC Number"
             variant="filled"
-            value={form.applicability}
+            value={form.nic_number}
             onChange={updateField}
             fullWidth
+            required
           />
           <TextField
             className={classes.textField}
             id="outlined-basic"
-            name="part_number"
-            label="Part number"
+            name="phone_number"
+            label="Phone number"
             variant="filled"
-            value={form.part_number}
+            value={form.phone_number}
             onChange={updateField}
             fullWidth
+            required
           />
           <TextField
             className={classes.textField}
             id="outlined-basic"
-            name="part_name"
-            label="Part name"
+            name="address"
+            label="Delivery address"
             variant="filled"
-            value={form.part_name}
+            value={form.address}
             onChange={updateField}
             fullWidth
+            required
           />
           <TextField
             className={classes.textField}
             id="outlined-basic"
-            name="production_period"
-            label="Production period"
+            name="email"
+            label="Email"
             variant="filled"
-            value={form.production_period}
-            onChange={updateField}
-            fullWidth
-          />
-          <TextField
-            className={classes.textField}
-            id="outlined-basic"
-            name="image_url"
-            label="Image URL"
-            variant="filled"
-            value={form.image_url}
-            onChange={updateField}
-            fullWidth
-          />
-          <TextField
-            className={classes.textField}
-            id="outlined-basic"
-            name="base_price"
-            label="Base price"
-            variant="filled"
-            value={form.base_price}
+            value={form.email}
             onChange={updateField}
             fullWidth
           />
@@ -204,10 +184,10 @@ export default function PickItSection(props) {
             variant="contained"
             color="default"
             className={classes.button}
-            startIcon={<AddIcon />}
+            startIcon={<SendIcon />}
             onClick={onSubmit}
           >
-            Add
+            Submit
           </Button>
         </Grid>
         <Alert severity={`${alertType}`}>{alert}</Alert>
