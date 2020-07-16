@@ -14,6 +14,7 @@ import Header from "./components/Header/Header.js"; // ⛳
 import Footer from "./components/Footer/Footer.js"; // ⛳
 import Parallax from "./components/Parallax/Parallax.js";
 
+// CSS components
 import mainPageStyles from "./assets/css/_views/mainPageStyle.js";
 import "./assets/css/bootstrap.min.css";
 import "react-image-lightbox/style.css";
@@ -25,6 +26,7 @@ import ShowPartSection from "./Sections/ShowPartSection.js";
 import SignupSection from "./Sections/SignupSection.js";
 import LoginSection from "./Sections/LoginSection.js";
 import PickItSection from "./Sections/PickItSection.js";
+import DashboardSection from "./Sections/DashboardSection.js";
 
 const useStyles = makeStyles(mainPageStyles);
 var hist = createBrowserHistory();
@@ -52,6 +54,7 @@ function MainPage(params) {
             <Switch>
               <Route path="/signup" component={SignupSection} />
               <Route path="/login" component={LoginSection} />
+              <Route path="/dashboard" component={DashboardSection} />
               <Route path="/pickpart/:partnumber" component={PickItSection} />
               <Route path="/part/:id" component={ShowPartSection} />
               <Route path="/add-part" component={AddPartSection} />
