@@ -78,7 +78,7 @@ export default function PickItSection(props) {
       email: form.email,
     };
     axios
-      .post("https://anjinz-api.vercel.app/api/customer", data)
+      .post("https://anjinz-api.vercel.app/api/customers", data)
       .then((res) => {
         this.setState({
           part_number: "",
