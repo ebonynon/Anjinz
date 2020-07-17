@@ -82,7 +82,7 @@ export default class LoginSection extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
+      <div className="container col-md-5">
         <div className="card card-container">
           <Form
             onSubmit={this.handleLogin}
