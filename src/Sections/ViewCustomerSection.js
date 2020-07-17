@@ -48,7 +48,7 @@ export default function ViewCustomerSection(props) {
     createData("NIC Number", `${ResData.nic_number}`),
     createData("Phone number", `${ResData.phone_number}`),
     createData("Delivery address", `${ResData.address}`),
-    createData("Email", `${ResData.emai}`),
+    createData("Email", `${ResData.email}`),
     // createData("Base price", `${ResData.base_price}`),
   ];
 
