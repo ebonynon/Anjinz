@@ -1,49 +1,52 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createBrowserHistory } from 'history'
+import { Router, Route, Switch } from 'react-router-dom'
 // nodejs library that concatenates classes
-import classNames from "classnames";
+import classNames from 'classnames'
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
+import { makeStyles } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
 
 // core components
-import Header from "./components/Header/Header.js"; // ⛳
-import Footer from "./components/Footer/Footer.js"; // ⛳
-import Parallax from "./components/Parallax/Parallax.js";
+import Header from './components/Header/Header.js' // ⛳
+import Footer from './components/Footer/Footer.js' // ⛳
+import Parallax from './components/Parallax/Parallax.js'
 
 // CSS components
-import mainPageStyles from "./assets/css/_views/mainPageStyle.js";
-import "./assets/css/bootstrap.min.css";
-import "react-image-lightbox/style.css";
+import mainPageStyles from './assets/css/_views/mainPageStyle.js'
+import './assets/css/bootstrap.min.css'
+import 'react-image-lightbox/style.css'
+
+// Images
+import bannerImg from './assets/img/Car-Parts.jpg'
 
 // Sections for this page
-import SearchSection from "./Sections/SearchSection.js";
-import AddPartSection from "./Sections/AddPartSection.js";
-import ShowPartSection from "./Sections/ShowPartSection.js";
-import SignupSection from "./Sections/SignupSection.js";
-import LoginSection from "./Sections/LoginSection.js";
-import PickItSection from "./Sections/PickItSection.js";
-import DashboardSection from "./Sections/DashboardSection.js";
-import ViewCustomerSection from "./Sections/ViewCustomerSection.js";
+import SearchSection from './Sections/SearchSection.js'
+import AddPartSection from './Sections/AddPartSection.js'
+import ShowPartSection from './Sections/ShowPartSection.js'
+import SignupSection from './Sections/SignupSection.js'
+import LoginSection from './Sections/LoginSection.js'
+import PickItSection from './Sections/PickItSection.js'
+import DashboardSection from './Sections/DashboardSection.js'
+import ViewCustomerSection from './Sections/ViewCustomerSection.js'
 
-const useStyles = makeStyles(mainPageStyles);
-var hist = createBrowserHistory();
+const useStyles = makeStyles(mainPageStyles)
+var hist = createBrowserHistory()
 
 function MainPage(params) {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <div>
       <Header />
-      <Parallax filter image={require("./assets/img/Car-Parts.jpg")}>
+      <Parallax filter image={bannerImg}>
         <div className={classes.container}>
           <Grid container>
             <Grid item xs={12} sm={12} md={6}>
               <Typography variant="h4">
-                There is sometimes an incorrect assumption that the parser
-                itself is what of ESLint with TypeScript.
+                There is sometimes an incorrect assumption that the parser itself is
+                what of ESLint with TypeScript.
               </Typography>
             </Grid>
           </Grid>
@@ -67,7 +70,7 @@ function MainPage(params) {
       </div>
       <Footer />
     </div>
-  );
+  )
 }
 
-ReactDOM.render(<MainPage />, document.getElementById("root"));
+ReactDOM.render(<MainPage />, document.getElementById('root'))
