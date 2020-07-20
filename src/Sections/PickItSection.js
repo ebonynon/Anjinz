@@ -1,73 +1,73 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react'
+import axios from 'axios'
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Alert from "@material-ui/lab/Alert";
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import Alert from '@material-ui/lab/Alert'
 // @material-ui/icons
-import SendIcon from "@material-ui/icons/Send";
+import SendIcon from '@material-ui/icons/Send'
 // core components
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    [theme.breakpoints.up("lg")]: {
-      width: "97ch",
+    [theme.breakpoints.up('lg')]: {
+      width: '97ch',
     },
     //width: "97ch",
   },
   button: {
     margin: theme.spacing(1),
-    position: "relative",
-    alignItems: "center",
-    justifyContent: "center",
-    float: "right!important",
-    [theme.breakpoints.down("md")]: {
-      paddingRight: "16px",
-      marginRight: "85px",
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    float: 'right!important',
+    [theme.breakpoints.down('md')]: {
+      paddingRight: '16px',
+      marginRight: '85px',
     },
   },
   gridItem: {
-    [theme.breakpoints.down("md")]: {
-      marginLeft: "20px",
+    [theme.breakpoints.down('md')]: {
+      marginLeft: '20px',
     },
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: "13.5px",
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '13.5px',
     },
   },
-}));
+}))
 
 export default function PickItSection(props) {
-  const classes = useStyles();
-  const [alert, setAlert] = useState();
-  const [alertType, setAlertType] = useState();
+  const classes = useStyles()
+  const [alert, setAlert] = useState()
+  const [alertType, setAlertType] = useState()
 
   const [form, setValue] = useState({
-    brand: "",
-    modle: "",
-    applicability: "",
-    part_number: "",
-    part_name: "",
-    production_period: "",
-    image_url: "",
-    base_price: "",
-  });
+    brand: '',
+    modle: '',
+    applicability: '',
+    part_number: '',
+    part_name: '',
+    production_period: '',
+    image_url: '',
+    base_price: '',
+  })
 
-  const updateField = (e) => {
+  const updateField = e => {
     setValue({
       ...form,
       [e.target.name]: e.target.value,
-    });
-  };
+    })
+  }
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = e => {
+    e.preventDefault()
 
     const data = {
       part_number: props.match.params.partnumber,
@@ -79,28 +79,28 @@ export default function PickItSection(props) {
       status_one: false,
       status_two: false,
       status_three: false,
-    };
+    }
     axios
-      .post("https://anjinz-api.vercel.app/api/customers", data)
-      .then((res) => {
+      .post('https://anjinz-api.vercel.app/api/customers', data)
+      .then(res => {
         setValue({
-          part_number: "",
-          customer_name: "",
-          nic_number: "",
-          phone_number: "",
-          address: "",
-          email: "",
-        });
-        setAlertType("success");
-        setAlert(res.status);
-        props.history.push("/");
+          part_number: '',
+          customer_name: '',
+          nic_number: '',
+          phone_number: '',
+          address: '',
+          email: '',
+        })
+        setAlertType('success')
+        setAlert(res.status)
+        props.history.push('/')
       })
-      .catch((err) => {
-        setAlertType("error");
-        setAlert(err.message);
-        console.log("Error in submission!");
-      });
-  };
+      .catch(err => {
+        setAlertType('error')
+        setAlert(err.message)
+        console.log('Error in submission!')
+      })
+  }
 
   return (
     <div className={classes.root}>
@@ -196,5 +196,5 @@ export default function PickItSection(props) {
         <Alert severity={`${alertType}`}>{alert}</Alert>
       </Grid>
     </div>
-  );
+  )
 }

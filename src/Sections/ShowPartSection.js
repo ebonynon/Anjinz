@@ -1,49 +1,49 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles'
 //#import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableRow from "@material-ui/core/TableRow";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import Lightbox from "react-image-lightbox";
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import Paper from '@material-ui/core/Paper'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableRow from '@material-ui/core/TableRow'
+import Grid from '@material-ui/core/Grid'
+import Link from '@material-ui/core/Link'
+import Lightbox from 'react-image-lightbox'
 // @material-ui/icons
-import ShareIcon from "@material-ui/icons/Share";
+import ShareIcon from '@material-ui/icons/Share'
 // core components
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-}));
+}))
 
 export default function ShowPartSection(props) {
-  const classes = useStyles();
-  const [ResData, setResData] = useState([]);
-  const [Image, setImage] = React.useState({ isOpen: false });
-  const { isOpen } = Image;
+  const classes = useStyles()
+  const [ResData, setResData] = useState([])
+  const [Image, setImage] = React.useState({ isOpen: false })
+  const { isOpen } = Image
 
   useEffect(() => {
     function fetchPart(props) {
       axios
-        .get("https://anjinz-api.vercel.app/api/parts/" + props.match.params.id)
-        .then((res) => {
-          console.log("Print-ShowPartSection-API-response: " + res.data);
-          setResData(res.data);
+        .get('https://anjinz-api.vercel.app/api/parts/' + props.match.params.id)
+        .then(res => {
+          console.log('Print-ShowPartSection-API-response: ' + res.data)
+          setResData(res.data)
         })
-        .catch((err) => {
-          console.log("Error from ShowPartSection");
-        });
+        .catch(err => {
+          console.log('Error from ShowPartSection')
+        })
     }
-    fetchPart(props);
-  }, [props]);
+    fetchPart(props)
+  }, [props])
 
   const share = async () => {
     try {
@@ -51,26 +51,26 @@ export default function ShowPartSection(props) {
         title: `${ResData.part_number}`,
         text: `${ResData.part_name}`,
         url: `/part/${ResData._id}`,
-      });
-      console.log("Thanks for sharing!");
+      })
+      console.log('Thanks for sharing!')
     } catch (err) {
-      console.log(`Couldn't share because of`, err);
+      console.log(`Couldn't share because of`, err)
     }
-  };
+  }
 
   function createData(prop, val) {
-    return { prop, val };
+    return { prop, val }
   }
 
   const rows = [
-    createData("OEM part number", `${ResData.part_number}`),
-    createData("Part name", `${ResData.part_name}`),
-    createData("Brand", `${ResData.brand}`),
-    createData("Modle", `${ResData.modle}`),
-    createData("Applicability", `${ResData.applicability}`),
-    createData("Production period", `${ResData.production_period}`),
-    createData("Base price", `${ResData.base_price}`),
-  ];
+    createData('OEM part number', `${ResData.part_number}`),
+    createData('Part name', `${ResData.part_name}`),
+    createData('Brand', `${ResData.brand}`),
+    createData('Modle', `${ResData.modle}`),
+    createData('Applicability', `${ResData.applicability}`),
+    createData('Production period', `${ResData.production_period}`),
+    createData('Base price', `${ResData.base_price}`),
+  ]
 
   return (
     <div className={classes.root}>
@@ -85,7 +85,7 @@ export default function ShowPartSection(props) {
           <TableContainer component={Paper}>
             <Table aria-label="part table">
               <TableBody>
-                {rows.map((row) => (
+                {rows.map(row => (
                   <TableRow key={row.name}>
                     <TableCell align="left">{row.prop}</TableCell>
                     <TableCell align="right">{row.val}</TableCell>
@@ -120,5 +120,5 @@ export default function ShowPartSection(props) {
         </Grid>
       </Grid>
     </div>
-  );
+  )
 }

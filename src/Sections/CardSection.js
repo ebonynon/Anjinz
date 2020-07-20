@@ -1,50 +1,50 @@
-import React from "react";
+import React from 'react'
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import Collapse from "@material-ui/core/Collapse";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableRow from "@material-ui/core/TableRow";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Lightbox from "react-image-lightbox";
+import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import Collapse from '@material-ui/core/Collapse'
+import Paper from '@material-ui/core/Paper'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableRow from '@material-ui/core/TableRow'
+import Link from '@material-ui/core/Link'
+import Grid from '@material-ui/core/Grid'
+import Lightbox from 'react-image-lightbox'
 // @material-ui/icons
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ShareIcon from '@material-ui/icons/Share'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 // core components
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     marginBottom: theme.spacing(2),
     maxWidth: 345,
     boxShadow:
-      "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
+      '0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
   },
   media: {
     height: 140,
   },
-}));
+}))
 
 export default function CardSection(props) {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const [Image, setImage] = React.useState({ isOpen: false });
-  const { isOpen } = Image;
-  const part = props.part;
+  const classes = useStyles()
+  const [expanded, setExpanded] = React.useState(false)
+  const [Image, setImage] = React.useState({ isOpen: false })
+  const { isOpen } = Image
+  const part = props.part
 
   const share = async () => {
     try {
@@ -52,28 +52,28 @@ export default function CardSection(props) {
         title: `${part.part_number}`,
         text: `${part.part_name}`,
         url: `/part/${part._id}`,
-      });
-      console.log("Thanks for sharing!");
+      })
+      console.log('Thanks for sharing!')
     } catch (err) {
-      console.log(`Couldn't share because of`, err);
+      console.log(`Couldn't share because of`, err)
     }
-  };
+  }
 
   const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+    setExpanded(!expanded)
+  }
 
   function createData(prop, val) {
-    return { prop, val };
+    return { prop, val }
   }
 
   const rows = [
-    createData("Brand", `${part.brand}`),
-    createData("Modle", `${part.modle}`),
-    createData("Applicability", `${part.applicability}`),
-    createData("OEM part number", `${part.part_number}`),
-    createData("Production period", `${part.production_period}`),
-  ];
+    createData('Brand', `${part.brand}`),
+    createData('Modle', `${part.modle}`),
+    createData('Applicability', `${part.applicability}`),
+    createData('OEM part number', `${part.part_number}`),
+    createData('Production period', `${part.production_period}`),
+  ]
 
   return (
     <Grid item xs={12} lg={4}>
@@ -129,7 +129,7 @@ export default function CardSection(props) {
               <TableContainer component={Paper}>
                 <Table aria-label="part table">
                   <TableBody>
-                    {rows.map((row) => (
+                    {rows.map(row => (
                       <TableRow key={row.name}>
                         <TableCell align="left">{row.prop}</TableCell>
                         <TableCell align="right">{row.val}</TableCell>
@@ -143,5 +143,5 @@ export default function CardSection(props) {
         </Collapse>
       </Card>
     </Grid>
-  );
+  )
 }

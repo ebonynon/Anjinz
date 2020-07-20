@@ -1,73 +1,73 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react'
+import axios from 'axios'
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Alert from "@material-ui/lab/Alert";
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import Alert from '@material-ui/lab/Alert'
 // @material-ui/icons
-import AddIcon from "@material-ui/icons/Add";
+import AddIcon from '@material-ui/icons/Add'
 // core components
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    [theme.breakpoints.up("lg")]: {
-      width: "97ch",
+    [theme.breakpoints.up('lg')]: {
+      width: '97ch',
     },
     //width: "97ch",
   },
   button: {
     margin: theme.spacing(1),
-    position: "relative",
-    alignItems: "center",
-    justifyContent: "center",
-    float: "right!important",
-    [theme.breakpoints.down("md")]: {
-      paddingRight: "16px",
-      marginRight: "85px",
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    float: 'right!important',
+    [theme.breakpoints.down('md')]: {
+      paddingRight: '16px',
+      marginRight: '85px',
     },
   },
   gridItem: {
-    [theme.breakpoints.down("md")]: {
-      marginLeft: "20px",
+    [theme.breakpoints.down('md')]: {
+      marginLeft: '20px',
     },
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: "13.5px",
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '13.5px',
     },
   },
-}));
+}))
 
 export default function AddPartSection() {
-  const classes = useStyles();
-  const [alert, setAlert] = useState();
-  const [alertType, setAlertType] = useState();
+  const classes = useStyles()
+  const [alert, setAlert] = useState()
+  const [alertType, setAlertType] = useState()
 
   const [form, setValue] = useState({
-    brand: "",
-    modle: "",
-    applicability: "",
-    part_number: "",
-    part_name: "",
-    production_period: "",
-    image_url: "",
-    base_price: "",
-  });
+    brand: '',
+    modle: '',
+    applicability: '',
+    part_number: '',
+    part_name: '',
+    production_period: '',
+    image_url: '',
+    base_price: '',
+  })
 
-  const updateField = (e) => {
+  const updateField = e => {
     setValue({
       ...form,
       [e.target.name]: e.target.value,
-    });
-  };
+    })
+  }
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = e => {
+    e.preventDefault()
 
     const data = {
       brand: form.brand,
@@ -78,30 +78,30 @@ export default function AddPartSection() {
       production_period: form.production_period,
       image_url: form.image_url,
       base_price: form.base_price,
-    };
+    }
     axios
-      .post("https://anjinz-api.vercel.app/api/parts", data)
-      .then((res) => {
+      .post('https://anjinz-api.vercel.app/api/parts', data)
+      .then(res => {
         setValue({
-          brand: "",
-          modle: "",
-          applicability: "",
-          part_number: "",
-          part_name: "",
-          production_period: "",
-          image_url: "",
-          base_price: "",
-        });
-        setAlertType("success");
-        setAlert(res.status);
+          brand: '',
+          modle: '',
+          applicability: '',
+          part_number: '',
+          part_name: '',
+          production_period: '',
+          image_url: '',
+          base_price: '',
+        })
+        setAlertType('success')
+        setAlert(res.status)
         //this.props.history.push("/");
       })
-      .catch((err) => {
-        setAlertType("error");
-        setAlert(err.message);
-        console.log("Error in AddPart!");
-      });
-  };
+      .catch(err => {
+        setAlertType('error')
+        setAlert(err.message)
+        console.log('Error in AddPart!')
+      })
+  }
 
   return (
     <div className={classes.root}>
@@ -208,5 +208,5 @@ export default function AddPartSection() {
         <Alert severity={`${alertType}`}>{alert}</Alert>
       </Grid>
     </div>
-  );
+  )
 }

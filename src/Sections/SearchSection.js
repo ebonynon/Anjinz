@@ -1,78 +1,76 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react'
+import axios from 'axios'
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 // @material-ui/icons
-import SearchIcon from "@material-ui/icons/Search";
+import SearchIcon from '@material-ui/icons/Search'
 // core components
-import CardSection from "./CardSection.js";
+import CardSection from './CardSection.js'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-}));
+}))
 
 export default function SearchSection() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const [form, setValue] = useState({
-    brand: "",
-    modle: "",
-    part_number: "",
-    part_name: "",
-  });
+    brand: '',
+    modle: '',
+    part_number: '',
+    part_name: '',
+  })
 
-  const [ResData, setResData] = useState([]);
+  const [ResData, setResData] = useState([])
 
-  const updateField = (e) => {
+  const updateField = e => {
     setValue({
       ...form,
       [e.target.name]: e.target.value,
-    });
-  };
+    })
+  }
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    axios
-      .get(
-        `https://anjinz-api.vercel.app/api/parts?brand=${form.brand}&modle=${form.modle}&part_name=${form.part_name}`
-      )
-      .then((res) => {
-        setResData(res.data);
-      })
-      .catch((err) => {
-        console.log("Error in SearchPart!");
-      });
-  };
-
-  const onSubmitPN = (e) => {
-    e.preventDefault();
+  const onSubmit = e => {
+    e.preventDefault()
 
     axios
       .get(
-        `https://anjinz-api.vercel.app/api/parts?part_number=${form.part_number}`
+        `https://anjinz-api.vercel.app/api/parts?brand=${form.brand}&modle=${form.modle}&part_name=${form.part_name}`,
       )
-      .then((res) => {
-        setResData(res.data);
+      .then(res => {
+        setResData(res.data)
       })
-      .catch((err) => {
-        console.log("Error in SearchPart-PN!");
-      });
-  };
+      .catch(err => {
+        console.log('Error in SearchPart!')
+      })
+  }
+
+  const onSubmitPN = e => {
+    e.preventDefault()
+
+    axios
+      .get(`https://anjinz-api.vercel.app/api/parts?part_number=${form.part_number}`)
+      .then(res => {
+        setResData(res.data)
+      })
+      .catch(err => {
+        console.log('Error in SearchPart-PN!')
+      })
+  }
   // console.log("ResData :", ResData);
 
-  var CardSectionList;
+  var CardSectionList
 
   if (!ResData) {
-    CardSectionList = "Part is not availabe";
+    CardSectionList = 'Part is not availabe'
   } else {
     CardSectionList = ResData.map((part, index) => (
       <CardSection part={part} key={index} />
-    ));
+    ))
   }
 
   return (
@@ -141,5 +139,5 @@ export default function SearchSection() {
         {CardSectionList}
       </div>
     </div>
-  );
+  )
 }

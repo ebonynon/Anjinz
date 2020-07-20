@@ -1,41 +1,41 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import Container from "@material-ui/core/Container";
-import Favorite from "@material-ui/icons/Favorite";
-import Typography from "../Typography/Typography.js";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Link from '@material-ui/core/Link'
+import Container from '@material-ui/core/Container'
+import Favorite from '@material-ui/icons/Favorite'
+import Typography from '../Typography/Typography.js'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
+    display: 'flex',
   },
   container: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(8),
-    display: "flex",
+    display: 'flex',
   },
   iconsWrapper: {
     height: 120,
   },
   icons: {
-    display: "flex",
+    display: 'flex',
   },
   icon: {
     width: 48,
     height: 48,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: theme.palette.warning.main,
     marginRight: theme.spacing(1),
-    "&:hover": {
+    '&:hover': {
       backgroundColor: theme.palette.warning.dark,
     },
   },
   list: {
     margin: 0,
-    listStyle: "none",
+    listStyle: 'none',
     padding: 0,
   },
   listItem: {
@@ -47,15 +47,15 @@ const useStyles = makeStyles((theme) => ({
     width: 150,
   },
   right: {
-    padding: "15px 0",
-    margin: "0",
-    float: "right!important",
-    textAlign: "center",
+    padding: '15px 0',
+    margin: '0',
+    float: 'right!important',
+    textAlign: 'center',
   },
-}));
+}))
 
 export default function Footer() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Typography component="footer" className={classes.root}>
@@ -95,10 +95,7 @@ export default function Footer() {
             </Typography>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link
-                  href="https://goo.gl/maps/C35BPTyd6PXqi3e28"
-                  target="blank"
-                >
+                <Link href="https://goo.gl/maps/C35BPTyd6PXqi3e28" target="blank">
                   Taxila Central College <br></br>Horana
                 </Link>
               </li>
@@ -107,11 +104,11 @@ export default function Footer() {
           <Grid item xs={12} lg={12}>
             <div className={classes.right}>
               <Typography variant="caption">
-                &copy; {1900 + new Date().getYear()} , made with{" "}
-                <Favorite className={classes.icon_} /> by{" "}
+                &copy; {1900 + new Date().getYear()} , made with{' '}
+                <Favorite className={classes.icon_} /> by{' '}
                 <Link href="https://github.com/ebonynon" target="blank">
                   xe-non
-                </Link>{" "}
+                </Link>{' '}
                 for a better web.
               </Typography>
             </div>
@@ -119,5 +116,5 @@ export default function Footer() {
         </Grid>
       </Container>
     </Typography>
-  );
+  )
 }
