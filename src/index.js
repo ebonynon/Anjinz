@@ -17,7 +17,7 @@ import Parallax from './components/Parallax/Parallax.js'
 // CSS components
 import mainPageStyles from './assets/css/_views/mainPageStyle.js'
 import './assets/css/bootstrap.min.css'
-import 'react-image-lightbox/style.css'
+import 'raw-loader!css-loader!react-image-lightbox/style.css'
 
 // Images
 import bannerImg from './assets/img/Car-Parts.jpg'
