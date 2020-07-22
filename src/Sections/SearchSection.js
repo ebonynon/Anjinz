@@ -23,7 +23,9 @@ const useStyles = makeStyles(theme => ({
 function SearchSection() {
   ///////////////////////////////////////////////////////////////
   const dispatch = useDispatch()
-  const onSubmit = () => {
+  const onSubmit = e => {
+    e.preventDefault()
+
     dispatch(
       actions
         .fetchPart(
