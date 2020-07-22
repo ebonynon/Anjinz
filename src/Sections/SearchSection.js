@@ -9,13 +9,26 @@ import SearchIcon from '@material-ui/icons/Search'
 // core components
 import CardSection from './CardSection.js'
 
+//////////////////////////////////////////////
+import { connect, useDispatch } from 'react-redux'
+import * as actions from './actions'
+//////////////////////////////////////////////
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
 }))
 
-export default function SearchSection() {
+function SearchSection() {
+  ///////////////////////////////////////////////////////////////
+  const dispatch = useDispatch()
+  const onSubmit = e => {
+    e.preventDefault()
+    dispatch(actions.fetchPart(form.brand, form.modle, form.part_name))
+  }
+  ///////////////////////////////////////////////////////////////
+
   const classes = useStyles()
 
   const [form, setValue] = useState({
@@ -34,20 +47,20 @@ export default function SearchSection() {
     })
   }
 
-  const onSubmit = e => {
-    e.preventDefault()
+  // const onSubmit = e => {
+  //   e.preventDefault()
 
-    axios
-      .get(
-        `https://anjinz-api.vercel.app/api/parts?brand=${form.brand}&modle=${form.modle}&part_name=${form.part_name}`,
-      )
-      .then(res => {
-        setResData(res.data)
-      })
-      .catch(err => {
-        console.log('Error in SearchPart!')
-      })
-  }
+  //   axios
+  //     .get(
+  //       `https://anjinz-api.vercel.app/api/parts?brand=${form.brand}&modle=${form.modle}&part_name=${form.part_name}`,
+  //     )
+  //     .then(res => {
+  //       setResData(res.data)
+  //     })
+  //     .catch(err => {
+  //       console.log('Error in SearchPart!')
+  //     })
+  // }
 
   const onSubmitPN = e => {
     e.preventDefault()
@@ -141,3 +154,6 @@ export default function SearchSection() {
     </div>
   )
 }
+
+export default connect(null, actions)(SearchSection)
+//export default SearchSection

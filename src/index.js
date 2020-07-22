@@ -32,6 +32,17 @@ import PickItSection from './Sections/PickItSection.js'
 import DashboardSection from './Sections/DashboardSection.js'
 import ViewCustomerSection from './Sections/ViewCustomerSection.js'
 
+////////////////////////////////////////////////
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import reducers from './Sections/reducers'
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+let store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)))
+///////////////////////////////////////////////
+
 const useStyles = makeStyles(mainPageStyles)
 var hist = createBrowserHistory()
 
@@ -73,4 +84,9 @@ function MainPage(params) {
   )
 }
 
-ReactDOM.render(<MainPage />, document.getElementById('root'))
+ReactDOM.render(
+  <Provider store={store}>
+    <MainPage />
+  </Provider>,
+  document.getElementById('root'),
+)

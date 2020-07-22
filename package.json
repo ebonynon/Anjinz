@@ -19,8 +19,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-image-lightbox": "^5.1.1",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-validation": "^3.0.7",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "validator": "^13.1.1"
   },
   "scripts": {
@@ -97,6 +100,19 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
+  },
+  "resolutions": {
+    "react-test-renderer": "^16.13.1"
+  },
+  "overrides": {
+    "*": {
+      "dependencies": {
+        "react": "-"
+      },
+      "peerDependencies": {
+        "react": "+"
+      }
     }
   }
 }
