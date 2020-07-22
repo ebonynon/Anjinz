@@ -23,9 +23,20 @@ const useStyles = makeStyles(theme => ({
 function SearchSection() {
   ///////////////////////////////////////////////////////////////
   const dispatch = useDispatch()
-  const onSubmit = e => {
-    e.preventDefault()
-    dispatch(actions.fetchPart(form.brand, form.modle, form.part_name))
+  const onSubmit = () => {
+    dispatch(
+      actions
+        .fetchPart(
+          form.brand,
+          form.modle,
+          form.part_name,
+        )(getPart => {
+          setResData(getPart.payload)
+        })
+        .catch(err => {
+          console.log('Error in getPart@redux! ', err)
+        }),
+    )
   }
   ///////////////////////////////////////////////////////////////
 
@@ -156,4 +167,3 @@ function SearchSection() {
 }
 
 export default connect(null, actions)(SearchSection)
-//export default SearchSection
