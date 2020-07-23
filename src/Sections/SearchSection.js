@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -8,11 +7,10 @@ import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search'
 // core components
 import CardSection from './CardSection.js'
-
-//////////////////////////////////////////////
+// Redux
 import { connect, useDispatch } from 'react-redux'
+
 import * as actions from './actions'
-//////////////////////////////////////////////
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,27 +19,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function SearchSection() {
-  ///////////////////////////////////////////////////////////////
-  const dispatch = useDispatch()
-  const onSubmit = e => {
-    e.preventDefault()
-
-    dispatch(
-      actions
-        .fetchPart(
-          form.brand,
-          form.modle,
-          form.part_name,
-        )(getPart => {
-          setResData(getPart.payload)
-        })
-        .catch(err => {
-          console.log('Error in getPart@redux! ', err)
-        }),
-    )
-  }
-  ///////////////////////////////////////////////////////////////
-
   const classes = useStyles()
 
   const [form, setValue] = useState({
@@ -60,34 +37,38 @@ function SearchSection() {
     })
   }
 
-  // const onSubmit = e => {
-  //   e.preventDefault()
+  const dispatch = useDispatch()
+  const onSubmit = e => {
+    e.preventDefault()
 
-  //   axios
-  //     .get(
-  //       `https://anjinz-api.vercel.app/api/parts?brand=${form.brand}&modle=${form.modle}&part_name=${form.part_name}`,
-  //     )
-  //     .then(res => {
-  //       setResData(res.data)
-  //     })
-  //     .catch(err => {
-  //       console.log('Error in SearchPart!')
-  //     })
-  // }
+    dispatch(
+      actions
+        .fetchPart(
+          form.brand,
+          form.modle,
+          form.part_name,
+        )(getPart => {
+          setResData(getPart.payload)
+        })
+        .catch(err => {
+          console.log('Error in getPart@redux! ', err)
+        }),
+    )
+  }
 
   const onSubmitPN = e => {
     e.preventDefault()
 
-    axios
-      .get(`https://anjinz-api.vercel.app/api/parts?part_number=${form.part_number}`)
-      .then(res => {
-        setResData(res.data)
-      })
-      .catch(err => {
-        console.log('Error in SearchPart-PN!')
-      })
+    dispatch(
+      actions
+        .fetchPart_PN(form.part_number)(getPart_PN => {
+          setResData(getPart_PN.payload)
+        })
+        .catch(err => {
+          console.log('Error in getPart_PN@redux! ', err)
+        }),
+    )
   }
-  // console.log("ResData :", ResData);
 
   var CardSectionList
 

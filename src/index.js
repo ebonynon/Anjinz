@@ -8,20 +8,16 @@ import classNames from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
-
 // core components
 import Header from './components/Header/Header.js' // ⛳
 import Footer from './components/Footer/Footer.js' // ⛳
 import Parallax from './components/Parallax/Parallax.js'
-
 // CSS components
 import mainPageStyles from './assets/css/_views/mainPageStyle.js'
 import './assets/css/bootstrap.min.css'
 import 'raw-loader!css-loader!react-image-lightbox/style.css'
-
 // Images
 import bannerImg from './assets/img/Car-Parts.jpg'
-
 // Sections for this page
 import SearchSection from './Sections/SearchSection.js'
 import AddPartSection from './Sections/AddPartSection.js'
@@ -31,8 +27,7 @@ import LoginSection from './Sections/LoginSection.js'
 import PickItSection from './Sections/PickItSection.js'
 import DashboardSection from './Sections/DashboardSection.js'
 import ViewCustomerSection from './Sections/ViewCustomerSection.js'
-
-////////////////////////////////////////////////
+// Redux
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
@@ -40,8 +35,8 @@ import reducers from './Sections/reducers'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
+// Store
 let store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)))
-///////////////////////////////////////////////
 
 const useStyles = makeStyles(mainPageStyles)
 var hist = createBrowserHistory()

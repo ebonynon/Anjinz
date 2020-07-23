@@ -1,4 +1,4 @@
-import { GET_PART } from './types'
+import { GET_PART, GET_PART_PN } from './types'
 import axios from 'axios'
 
 export function fetchPart(brand, modle, part_name) {
@@ -16,6 +16,22 @@ export function fetchPart(brand, modle, part_name) {
       })
       .catch(err => {
         console.log('Error in GET_PART :: ', err)
+      })
+  }
+}
+
+export function fetchPart_PN(part_number) {
+  return function (dispatch) {
+    axios
+      .get(`https://anjinz-api.vercel.app/api/parts?part_number=${part_number}`)
+      .then(response => {
+        dispatch({
+          type: GET_PART_PN,
+          payload: response.data,
+        })
+      })
+      .catch(err => {
+        console.log('Error in GET_PART_PN :: ', err)
       })
   }
 }
