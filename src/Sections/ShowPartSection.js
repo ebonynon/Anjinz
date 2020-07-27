@@ -17,6 +17,10 @@ import Lightbox from 'react-image-lightbox'
 // @material-ui/icons
 import ShareIcon from '@material-ui/icons/Share'
 // core components
+// Redux
+//import { connect, useDispatch } from 'react-redux'
+
+//import * as actions_ from './actions'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,13 +28,40 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function ShowPartSection(props) {
+function ShowPartSection(props) {
   const classes = useStyles()
   const [ResData, setResData] = useState([])
   const [Image, setImage] = React.useState({ isOpen: false })
   const { isOpen } = Image
 
+  //  const dispatch = useDispatch()
   useEffect(() => {
+    // dispatch(
+    //   actions_
+    //     .showPart()(
+    //       //if (getPart) {
+    //       // getPart => {
+    //       //   setResData(getPart.payload)
+    //       // },
+    //       //}
+
+    //       //if (getPart_PN) {
+    //       getPart_PN => {
+    //         setResData(getPart_PN.payload)
+    //       },
+    //       //}
+    //       // getPart => {
+    //       //   setResData(getPart.payload)
+    //       // },
+    //       // getPart_PN => {
+    //       //   setResData(getPart_PN.payload)
+    //       // },
+    //     )
+    //     .catch(err => {
+    //       console.log('Error in showPart@redux! ', err)
+    //     }),
+    // )
+    ////console.log('Print-ShowPartSection-API-response: ' + ResData)
     function fetchPart(props) {
       axios
         .get('https://anjinz-api.vercel.app/api/parts/' + props.match.params.id)
@@ -122,3 +153,6 @@ export default function ShowPartSection(props) {
     </div>
   )
 }
+
+//export default connect(null, actions_)(ShowPartSection)
+export default ShowPartSection
