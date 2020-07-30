@@ -8,9 +8,9 @@ import SearchIcon from '@material-ui/icons/Search'
 // core components
 import CardSection from './CardSection.js'
 // Redux
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 
-import * as actions from './actions'
+import { fetchPart, fetchPart_PN } from './actions'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,37 +37,32 @@ function SearchSection() {
     })
   }
 
-  const dispatch = useDispatch()
   const onSubmit = e => {
     e.preventDefault()
 
-    dispatch(
-      actions
-        .fetchPart(
-          form.brand,
-          form.modle,
-          form.part_name,
-        )(getPart => {
-          setResData(getPart.payload)
-        })
-        .catch(err => {
-          console.log('Error in getPart@redux! ', err)
-        }),
-    )
+    try {
+      fetchPart(
+        form.brand,
+        form.modle,
+        form.part_name,
+      )(getPart => {
+        setResData(getPart.payload)
+      })
+    } catch (e) {
+      console.log('Error in getPart@Redux! ', e.message)
+    }
   }
 
   const onSubmitPN = e => {
     e.preventDefault()
 
-    dispatch(
-      actions
-        .fetchPart_PN(form.part_number)(getPart_PN => {
-          setResData(getPart_PN.payload)
-        })
-        .catch(err => {
-          console.log('Error in getPart_PN@redux! ', err)
-        }),
-    )
+    try {
+      fetchPart_PN(form.part_number)(getPart_PN => {
+        setResData(getPart_PN.payload)
+      })
+    } catch (e) {
+      console.log('Error in getPart_PN@Redux! ', e.message)
+    }
   }
 
   var CardSectionList
@@ -149,4 +144,4 @@ function SearchSection() {
   )
 }
 
-export default connect(null, actions)(SearchSection)
+export default connect(null, (fetchPart, fetchPart_PN))(SearchSection)
